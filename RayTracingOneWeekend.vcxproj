@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="Vec3Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ColorUtil.h" />
+    <ClInclude Include="vec3.h" />
+    <ClInclude Include="Vec3Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
