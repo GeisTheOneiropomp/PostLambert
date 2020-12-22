@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorUtil.h" />
+    <ClInclude Include="Ray.h" />
     <ClInclude Include="vec3.h" />
     <ClInclude Include="Vec3Util.h" />
   </ItemGroup>

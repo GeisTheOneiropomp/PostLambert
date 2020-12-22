@@ -8,7 +8,6 @@ public:
 
 	Vec3();
 	Vec3(double e0, double e1, double e2);
-	Vec3(double value);
 	double x();
 	double y();
 	double z();

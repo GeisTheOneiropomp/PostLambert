@@ -9,10 +9,6 @@ Vec3::Vec3(double e0, double e1, double e2) : e{ e0, e1, e2 }
 {
 }
 
-Vec3::Vec3(double value): e{value, value, value}
-{
-}
-
 double Vec3::x()
 {
 	return e[0];
@@ -52,13 +48,11 @@ Vec3& Vec3::operator*=(const double t)
 	e[1] *= t;
 	e[2] *= t;
 	return *this;
-	// TODO: insert return statement here
 }
 
 Vec3& Vec3::operator/=(const double t)
 {
 	return *this *= 1 / t;
-	// TODO: insert return statement here
 }
 
 double Vec3::Length()
