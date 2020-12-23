@@ -1,4 +1,5 @@
 #include "Vec3Util.h"
+#include "RTWeekendUtil.h"
 
 namespace Vector3Namespace 
 {
@@ -58,6 +59,35 @@ namespace Vector3Namespace
         return Vec3(u.e[0] * t, u.e[1] * t, u.e[2] * t);
     }
 
+    Vec3 random()
+    {
+        return Vec3(random_double(), random_double(), random_double());
+    }
 
+    Vec3 random(double min, double max)
+    {
+        return Vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
+
+    Vec3 randomInUnitSphere()
+    {
+        while (true) {
+            auto p = random(-1, 1);
+            if (p.LengthSquared() >= 1) continue;
+            return p;
+        }
+    }
+
+    Vec3 randomUnitVector() {
+        return unit_vector(randomInUnitSphere());
+    }
+
+    Vec3 randomInHemisphere(const Vec3& normal) {
+        Vec3 inUnitSphere = randomInUnitSphere();
+        if (dot(inUnitSphere, normal) > 0.0) // In the same hemisphere as the normal
+            return inUnitSphere;
+        else
+            return -inUnitSphere;
+    }
 
 }

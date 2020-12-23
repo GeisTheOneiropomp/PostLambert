@@ -24,10 +24,16 @@ double HitSphere(const Point3 center, double radius, const Ray& r) {
     }
 }
 
-Color ray_color(const Ray& r, const Hittable& world) {
+Color ray_color(const Ray& r, const Hittable& world, int depth) {
+
+    if (depth == 0) {
+        return Color(0, 0, 0);
+    }
     hit_record record;
-    if (world.hit(r, 0, infinity, record)) {
-        return 0.5 * (record.normal + Color(1, 1, 1));
+
+    if (world.hit(r, 0.001, infinity, record)) {
+        Point3 target = record.p + randomInHemisphere(record.normal);
+        return 0.5 * ray_color(Ray(record.p, target - record.p), world, depth - 1);
     }
 
     Vec3 unit_direction = Vector3Namespace::unit_vector(r.direction());
@@ -42,6 +48,7 @@ int main() {
     const int kImageWidth = 900;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
     const int samplesPerPixel = 100;
+    const int maxDepth = 30;
 
     //world
     HittableList world;
@@ -63,7 +70,7 @@ int main() {
                 auto u = (i + random_double()) / (kImageWidth - 1);
                 auto v = (j + random_double()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
-                pixel_color += ray_color(r, world);
+                pixel_color += ray_color(r, world, maxDepth);
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }

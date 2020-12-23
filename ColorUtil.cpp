@@ -9,9 +9,9 @@ namespace ColorUtil {
 
 		// Divide the color by the number of samples.
 		auto scale = 1.0 / samplesPerPixel;
-		r *= scale;
-		g *= scale;
-		b *= scale;
+		r = sqrt(scale * r);
+		g = sqrt(scale * g);
+		b = sqrt(scale * b);
 
 		out << static_cast<int>(256 * clamp(r, 0.0, 0.999)) << ' '
 			<< static_cast<int>(256 * clamp(g, 0.0, 0.999)) << ' '
