@@ -26,7 +26,7 @@ namespace Vector3Namespace {
 		return e[2];
 	}
 
-	Vec3 Vec3::operator-()
+	Vec3 Vec3::operator-() const
 	{
 		return Vec3(-e[0], -e[1], -e[2]);
 	}

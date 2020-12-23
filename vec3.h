@@ -12,7 +12,7 @@ namespace Vector3Namespace {
 		double x();
 		double y();
 		double z();
-		Vec3 operator-();
+		Vec3 operator-() const;
 		double operator[] (int i);
 		Vec3& operator+= (const Vec3 v);
 		Vec3& operator*= (const double t);
