@@ -1,6 +1,7 @@
 #pragma once
 #include "vec3.h"
 #include "Ray.h"
+#include "Vec3Util.h"
 
 using namespace Vector3Namespace;
 

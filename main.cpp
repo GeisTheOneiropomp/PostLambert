@@ -3,7 +3,10 @@
 #include "Ray.h"
 #include "vec3.h"
 #include "Vec3Util.h"
+#include "rtweekend.h"
 
+#include "HittableList.h"
+#include "sphere.h"
 using namespace Vector3Namespace;
 
 double HitSphere(const Point3 center, double radius, const Ray& r) {
@@ -20,15 +23,14 @@ double HitSphere(const Point3 center, double radius, const Ray& r) {
     }
 }
 
-Color ray_color(const Ray& r) {
-    auto t = (HitSphere(Point3(0, 0, -1), 0.5, r));
-    auto p = r.at(t);
-    if (t > 0.0) {
-        Vec3 N = unit_vector(r.at(t) - Vec3(0, 0, -1));
-        return 0.5 * Color(N.x() + 1, N.y() + 1, N.z() + 1);
-        }
+Color ray_color(const Ray& r, const Hittable& world) {
+    hit_record record;
+    if (world.hit(r, 0, infinity, record)) {
+        return 0.5 * (record.normal + Color(1, 1, 1));
+    }
+
     Vec3 unit_direction = Vector3Namespace::unit_vector(r.direction());
-    t = 0.5 * (unit_direction.y() + 1.0);
+    auto t = 0.5 * (unit_direction.y() + 1.0);
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
 
@@ -38,6 +40,11 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 900;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
+
+    //world
+    HittableList world;
+    world.add(make_shared<Sphere>(Point3(0, 0, -1), 0.5));
+    world.add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
 
     // Camera
     auto kViewportHeight = 2.0;
@@ -58,7 +65,7 @@ int main() {
             auto u = double(i) / (kImageWidth - 1);
             auto v = double(j) / (kImageHeight - 1);
             Ray r(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
-            Color pixel_color = ray_color(r);
+            Color pixel_color = ray_color(r, world);
             ColorUtil::WriteColor(std::cout, pixel_color);
         }
     }

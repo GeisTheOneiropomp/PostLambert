@@ -140,16 +140,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorUtil.cpp" />
+    <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorUtil.h" />
+    <ClInclude Include="Hittable.h" />
+    <ClInclude Include="HittableList.h" />
     <ClInclude Include="Ray.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RTWeekend.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="vec3.h" />
     <ClInclude Include="Vec3Util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RayTracingOneWeekend.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
