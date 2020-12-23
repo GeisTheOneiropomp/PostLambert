@@ -3,10 +3,11 @@
 #include "Ray.h"
 #include "vec3.h"
 #include "Vec3Util.h"
-#include "rtweekend.h"
+#include "rtweekendutil.h"
 
 #include "HittableList.h"
 #include "sphere.h"
+#include "Camera.h"
 using namespace Vector3Namespace;
 
 double HitSphere(const Point3 center, double radius, const Ray& r) {
@@ -40,6 +41,7 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 900;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
+    const int samplesPerPixel = 100;
 
     //world
     HittableList world;
@@ -47,14 +49,8 @@ int main() {
     world.add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
 
     // Camera
-    auto kViewportHeight = 2.0;
-    auto kViewportWidth = kAspectRatio * kViewportHeight;
-    auto focalLength = 1.0;
+    Camera cam;
 
-    auto origin = Point3(0, 0, 0);
-    auto horizontal = Vec3(kViewportWidth, 0, 0);
-    auto vertical = Vec3(0, kViewportHeight, 0);
-    auto lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - Vec3(0, 0, focalLength);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
@@ -62,11 +58,14 @@ int main() {
     for (int j = kImageHeight - 1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < kImageWidth; ++i) {
-            auto u = double(i) / (kImageWidth - 1);
-            auto v = double(j) / (kImageHeight - 1);
-            Ray r(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
-            Color pixel_color = ray_color(r, world);
-            ColorUtil::WriteColor(std::cout, pixel_color);
+            Color pixel_color(0, 0, 0);
+            for (int s = 0; s < samplesPerPixel; ++s) {
+                auto u = (i + random_double()) / (kImageWidth - 1);
+                auto v = (j + random_double()) / (kImageHeight - 1);
+                Ray r = cam.getRay(u, v);
+                pixel_color += ray_color(r, world);
+            }
+            ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }
     }
     std::cerr << "\nDone.\n";

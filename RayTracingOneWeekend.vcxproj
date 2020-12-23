@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,12 +149,13 @@
     <ClCompile Include="Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorUtil.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="RTWeekend.h" />
+    <ClInclude Include="RTWeekendUtil.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="vec3.h" />
     <ClInclude Include="Vec3Util.h" />
