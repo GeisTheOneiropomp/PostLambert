@@ -9,17 +9,17 @@ namespace Vector3Namespace {
 	{
 	}
 
-	Point3 Ray::origin()
+	Point3 Ray::origin() const
 	{
 		return origin_;
 	}
 
-	Vec3 Ray::direction()
+	Vec3 Ray::direction() const
 	{
 		return direction_;
 	}
 
-	Point3 Ray::at(double time)
+	Point3 Ray::at(double time) const
 	{
 		return origin_ + (time * direction_);
 	}
