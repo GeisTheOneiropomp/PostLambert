@@ -7,7 +7,7 @@ using namespace Vector3Namespace;
 class Camera
 {
 public:
-    Camera();
+    Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double fieldOfView, double aspectRatio);
 
     Ray getRay(double u, double v) const;
 

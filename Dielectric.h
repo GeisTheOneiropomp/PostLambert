@@ -1,10 +1,10 @@
 #pragma once
 #include "Material.h"
-class Dieletric :
+class Dielectric :
     public Material
 {
 public:
-    Dieletric(double refractiveIndex);
+    Dielectric(double refractiveIndex);
     virtual bool scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const override;
 public:
     double refractiveIndex;

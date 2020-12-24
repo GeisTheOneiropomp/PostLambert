@@ -1,18 +1,23 @@
 #include "Camera.h"
 
-Camera::Camera() {
-    auto kAspectRatio = 16.0 / 9.0;
-    auto kViewportHeight = 2.0;
-    auto kViewportWidth = kAspectRatio * kViewportHeight;
+Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldOfView, double aspectRatio) {
+    auto theta = degrees_to_radians(verticalFieldOfView);
+    auto height = tan(theta/2);
+    auto viewportHeight = 2.0 * height;
+    auto viewportWidth = aspectRatio * viewportHeight;
     auto focalLength = 1.0;
 
-    origin = Point3(0, 0, 0);
-    horizontal = Vec3(kViewportWidth, 0, 0);
-    vertical = Vec3(0, kViewportHeight, 0);
-    lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - Vec3(0, 0, focalLength);
+    auto w = unit_vector(lookFrom - lookAt);
+    auto u = unit_vector(cross(upVec, w));
+    auto v = cross(w, u);
+
+    origin = lookFrom;
+    horizontal = viewportWidth * u;
+    vertical = viewportHeight * v;
+    lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - w;
 }
 
-Ray Camera::getRay(double u, double v) const
+Ray Camera::getRay(double s, double t) const
 {
-    return Ray(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
+    return Ray(origin, lowerLeftCorner + s * horizontal + t * vertical - origin);
 }

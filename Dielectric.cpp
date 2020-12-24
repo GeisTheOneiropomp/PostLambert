@@ -1,11 +1,11 @@
-#include "Dieletric.h"
+#include "Dielectric.h"
 #include "Hittable.h"
 
-Dieletric::Dieletric(double refractiveIndex) : refractiveIndex(refractiveIndex)
+Dielectric::Dielectric(double refractiveIndex) : refractiveIndex(refractiveIndex)
 {
 }
 
-bool Dieletric::scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const
+bool Dielectric::scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const
 {
 	attenuation = Color(1.0, 1.0, 1.0);
 	double refraction_ratio = record.front_face ? (1.0 / refractiveIndex) : refractiveIndex;
@@ -24,7 +24,7 @@ bool Dieletric::scatter(const Ray& r_in, const hitRecord& record, Color& attenua
 	return true;
 }
 
-double Dieletric::SchlickReflectance(double cosine, double ri)
+double Dielectric::SchlickReflectance(double cosine, double ri)
 {
 	auto r0 = (1 - ri) / (1 + ri);
 	r0 = r0 * r0;
