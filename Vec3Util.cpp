@@ -90,6 +90,14 @@ namespace Vector3Namespace
             return -inUnitSphere;
     }
 
+    Vec3 randomInUnitDisk() {
+        while (true) {
+            auto p = Vec3(random_double(-1, 1), random_double(-1, 1), 0);
+            if (p.LengthSquared() >= 1) continue;
+            return p;
+        }
+    }
+
     Vec3 reflect(const Vec3& v, const Vec3& normal)
     {
         return v - 2*dot(v,normal) * normal;

@@ -15,6 +15,54 @@
 
 using namespace Vector3Namespace;
 
+HittableList random_scene() {
+    HittableList world;
+
+    auto ground_material = make_shared<Lambertian>(Color(0.5, 0.5, 0.5));
+    world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, ground_material));
+
+    for (int a = -11; a < 11; a++) {
+        for (int b = -11; b < 11; b++) {
+            auto choose_mat = random_double();
+            Point3 center(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
+
+            if ((center - Point3(4, 0.2, 0)).Length() > 0.9) {
+                shared_ptr<Material> sphere_material;
+
+                if (choose_mat < 0.8) {
+                    // diffuse
+                    auto albedo = Vector3Namespace::random() * Vector3Namespace::random();
+                    sphere_material = make_shared<Lambertian>(albedo);
+                    world.add(make_shared<Sphere>(center, 0.2, sphere_material));
+                }
+                else if (choose_mat < 0.95) {
+                    // metal
+                    auto albedo = Vector3Namespace::random(0.5, 1);
+                    auto fuzz = random_double(0, 0.5);
+                    sphere_material = make_shared<Metal>(albedo, fuzz);
+                    world.add(make_shared<Sphere>(center, 0.2, sphere_material));
+                }
+                else {
+                    // glass
+                    sphere_material = make_shared<Dielectric>(1.5);
+                    world.add(make_shared<Sphere>(center, 0.2, sphere_material));
+                }
+            }
+        }
+    }
+
+    auto material1 = make_shared<Dielectric>(1.5);
+    world.add(make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
+
+    auto material2 = make_shared<Lambertian>(Color(0.4, 0.2, 0.1));
+    world.add(make_shared<Sphere>(Point3(-4, 1, 0), 1.0, material2));
+
+    auto material3 = make_shared<Metal>(Color(0.7, 0.6, 0.5), 0.0);
+    world.add(make_shared<Sphere>(Point3(4, 1, 0), 1.0, material3));
+
+    return world;
+}
+
 double HitSphere(const Point3 center, double radius, const Ray& r) {
     Vec3 modifiedCenter = r.origin() - center;
     auto a = r.direction().LengthSquared();
@@ -54,10 +102,10 @@ int main() {
 
     // Image
     const auto kAspectRatio = 16.0 / 9.0;
-    const int kImageWidth = 900;
+    const int kImageWidth = 2400;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 100;
-    const int maxDepth = 30;
+    const int samplesPerPixel = 500;
+    const int maxDepth = 50;
 
     //world
     auto R = cos(pi / 4);
@@ -75,7 +123,14 @@ int main() {
     world.add(make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), -0.45, material_left));
     world.add(make_shared<Sphere>(Point3(1.0, 0.0, -1.0), 0.5, material_right));
 
-    Camera cam(Point3(-2, 2, 1), Point3(0, 0, -1), Vec3(0, 1, 0), 90, kAspectRatio);
+    Point3 lookfrom(13, 2, 3);
+    Point3 lookat(0, 0, 0);
+    Vec3 vup(0, 1, 0);
+    auto dist_to_focus = 10;
+    auto aperture = .1;
+
+
+    Camera cam(lookfrom, lookat, vup, 20, kAspectRatio, aperture, dist_to_focus);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
