@@ -2,12 +2,14 @@
 #include "vec3.h"
 #include "Ray.h"
 #include "Vec3Util.h"
+#include "Material.h"
 
 using namespace Vector3Namespace;
 
-struct hit_record {
-	Point3 p;
+struct hitRecord {
+	Point3 point;
 	Vec3 normal;
+	std::shared_ptr<Material> materialPointer;
 	double t;
 	bool front_face;
 
@@ -20,6 +22,6 @@ struct hit_record {
 class Hittable
 {
 public:
-	virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
+	virtual bool hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const = 0;
 };
 

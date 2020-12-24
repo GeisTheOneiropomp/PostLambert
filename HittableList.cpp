@@ -18,9 +18,9 @@ void HittableList::add(shared_ptr<Hittable> object)
 	objects.push_back(object);
 }
 
-bool HittableList::hit(const Ray& r, double t_min, double t_max, hit_record& rec) const
+bool HittableList::hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const
 {
-    hit_record temp_rec;
+    hitRecord temp_rec;
     bool hit_anything = false;
     auto closest_so_far = t_max;
 

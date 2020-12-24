@@ -19,6 +19,7 @@ namespace Vector3Namespace {
 		Vec3& operator/= (const double t);
 		double Length();
 		double LengthSquared();
+		bool nearZero() const;
 
 	public:
 		double e[3];

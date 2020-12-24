@@ -142,7 +142,9 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="HittableList.cpp" />
+    <ClCompile Include="Lambertian.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Metal.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Vec3.cpp" />
@@ -153,6 +155,9 @@
     <ClInclude Include="ColorUtil.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
+    <ClInclude Include="Lambertian.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Metal.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RTWeekendUtil.h" />

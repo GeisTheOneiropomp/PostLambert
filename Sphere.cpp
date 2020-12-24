@@ -6,11 +6,12 @@ Sphere::Sphere()
 {
 }
 
-Sphere::Sphere(Point3 center, double radius) : center(center), radius(radius)
+Sphere::Sphere(Point3 center, double radius, std::shared_ptr<Material> material) 
+	: center(center), radius(radius), materialPointer(material)
 {
 }
 
-bool Sphere::hit(const Ray& r, double t_min, double t_max, hit_record& rec) const
+bool Sphere::hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const
 {
 	Vec3 origin = r.origin() - center;
 	auto a = r.direction().LengthSquared();
@@ -30,9 +31,10 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, hit_record& rec) cons
 	}
 
 	rec.t = root;
-	rec.p = r.at(rec.t);
-	Vec3 outwardNormal = (rec.p - center) / radius;
+	rec.point = r.at(rec.t);
+	Vec3 outwardNormal = (rec.point - center) / radius;
 	rec.setFaceNormal(r, outwardNormal);
+	rec.materialPointer = materialPointer;
 
 	return true;
 }
