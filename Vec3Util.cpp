@@ -95,4 +95,12 @@ namespace Vector3Namespace
         return v - 2*dot(v,normal) * normal;
     }
 
+    Vec3 refract(const Vec3& uv, const Vec3 normal, double etai_over_etat)
+    {
+        auto cos_theta = fmin(dot(-uv, normal), 1.0);
+        Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * normal);
+        Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * normal;
+        return r_out_perp + r_out_parallel;
+    }
+
 }

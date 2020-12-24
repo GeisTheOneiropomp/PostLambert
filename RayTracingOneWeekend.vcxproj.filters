@@ -45,6 +45,9 @@
     <ClCompile Include="Metal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dieletric.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorUtil.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Metal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dieletric.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
