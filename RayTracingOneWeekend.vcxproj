@@ -147,6 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Metal.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="SceneUtil.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RTWeekendUtil.h" />
+    <ClInclude Include="SceneUtil.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec3Util.h" />

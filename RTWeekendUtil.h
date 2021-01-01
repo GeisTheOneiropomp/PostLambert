@@ -6,6 +6,7 @@
 #include "ray.h"
 
 // Usings
+
 namespace rtweekend_math {
     using std::shared_ptr;
     using std::make_shared;
