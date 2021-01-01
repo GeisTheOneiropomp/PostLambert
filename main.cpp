@@ -13,43 +13,9 @@
 #include "Metal.h"
 #include "Dielectric.h"
 #include "SceneUtil.h"
+#include "RayColorUtil.h"
 
 using namespace rtweekend_math;
-
-double HitSphere(const Point3 center, double radius, const Ray& r) {
-    Vec3 modifiedCenter = r.origin() - center;
-    auto a = r.direction().LengthSquared();
-    auto half_b = dot(modifiedCenter, r.direction());
-    auto c = modifiedCenter.LengthSquared() - radius * radius;
-    auto discriminant = half_b * half_b - a * c;
-    if (discriminant < 0) {
-        return -1.0;
-    }
-    else {
-        return (-half_b - sqrt(discriminant)) / a;
-    }
-}
-
-Color ray_color(const Ray& r, const Hittable& world, int depth) {
-
-    if (depth == 0) {
-        return Color(0, 0, 0);
-    }
-    hitRecord record;
-
-    if (world.hit(r, 0.001, infinity, record)) {
-        Ray scattered;
-        Color attenuation;
-        if (record.materialPointer->scatter(r, record, attenuation, scattered)) {
-            return attenuation * ray_color(scattered, world, depth - 1);
-        }
-        return Color(0, 0, 0);
-    }
-
-    Vec3 unit_direction = unit_vector(r.direction());
-    auto t = 0.5 * (unit_direction.y() + 1.0);
-    return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
-}
 
 int main() {
 
@@ -84,7 +50,7 @@ int main() {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
-                pixel_color += ray_color(r, world, maxDepth);
+                pixel_color += RayColor(r, world, maxDepth);
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }
