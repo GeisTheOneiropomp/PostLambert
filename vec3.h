@@ -1,8 +1,6 @@
 #pragma once
 #include <cmath>
 
-namespace Vector3Namespace {
-
 	class Vec3
 	{
 	public:
@@ -28,4 +26,3 @@ namespace Vector3Namespace {
 	// Type aliases for vec3
 	using Point3 = Vec3;   // 3D point
 	using Color = Vec3;    // RGB color
-}

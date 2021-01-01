@@ -1,8 +1,7 @@
 #pragma once
 #include <ostream>
 #include "vec3.h"
-namespace Vector3Namespace
-{
+
 	std::ostream& operator<<(std::ostream& out, const Vec3& v);
 	Vec3 operator+ (const Vec3& u, const Vec3& v);
 	Vec3 operator- (const Vec3& u, const Vec3& v);
@@ -21,6 +20,4 @@ namespace Vector3Namespace
 	Vec3 randomInHemisphere(const Vec3& normal);
 	Vec3 reflect(const Vec3& v, const Vec3& normal);
 	Vec3 refract(const Vec3& uv, const Vec3 normal, double etai_over_etat);
-
-};
 

@@ -1,9 +1,6 @@
 #include "Vec3Util.h"
 #include "RTWeekendUtil.h"
 
-namespace Vector3Namespace 
-{
-
     std::ostream& operator<<(std::ostream& out, const Vec3& v)
     {
         return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
@@ -110,5 +107,3 @@ namespace Vector3Namespace
         Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * normal;
         return r_out_perp + r_out_parallel;
     }
-
-}

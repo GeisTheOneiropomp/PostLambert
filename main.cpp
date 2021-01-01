@@ -13,8 +13,6 @@
 #include "Metal.h"
 #include "Dielectric.h"
 
-using namespace Vector3Namespace;
-
 HittableList random_scene() {
     HittableList world;
 
@@ -31,13 +29,13 @@ HittableList random_scene() {
 
                 if (choose_mat < 0.8) {
                     // diffuse
-                    auto albedo = Vector3Namespace::random() * Vector3Namespace::random();
+                    auto albedo = random() * random();
                     sphere_material = make_shared<Lambertian>(albedo);
                     world.add(make_shared<Sphere>(center, 0.2, sphere_material));
                 }
                 else if (choose_mat < 0.95) {
                     // metal
-                    auto albedo = Vector3Namespace::random(0.5, 1);
+                    auto albedo = random(0.5, 1);
                     auto fuzz = random_double(0, 0.5);
                     sphere_material = make_shared<Metal>(albedo, fuzz);
                     world.add(make_shared<Sphere>(center, 0.2, sphere_material));
@@ -93,7 +91,7 @@ Color ray_color(const Ray& r, const Hittable& world, int depth) {
         return Color(0, 0, 0);
     }
 
-    Vec3 unit_direction = Vector3Namespace::unit_vector(r.direction());
+    Vec3 unit_direction = unit_vector(r.direction());
     auto t = 0.5 * (unit_direction.y() + 1.0);
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
@@ -102,26 +100,16 @@ int main() {
 
     // Image
     const auto kAspectRatio = 16.0 / 9.0;
-    const int kImageWidth = 2400;
+    const int kImageWidth = 1600;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 500;
-    const int maxDepth = 50;
+    const int samplesPerPixel = 2;
+    const int maxDepth = 30;
 
     //world
     auto R = cos(pi / 4);
 
-    HittableList world;
+    auto world = random_scene();
 
-    auto material_ground = make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<Lambertian>(Color(0.1, 0.2, 0.5));
-    auto material_left = make_shared<Dielectric>(1.5);
-    auto material_right = make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.0);
-
-    world.add(make_shared<Sphere>(Point3(0.0, -100.5, -1.0), 100.0, material_ground));
-    world.add(make_shared<Sphere>(Point3(0.0, 0.0, -1.0), 0.5, material_center));
-    world.add(make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), 0.5, material_left));
-    world.add(make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), -0.45, material_left));
-    world.add(make_shared<Sphere>(Point3(1.0, 0.0, -1.0), 0.5, material_right));
 
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);

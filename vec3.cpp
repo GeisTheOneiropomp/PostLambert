@@ -1,7 +1,5 @@
 #include "Vec3.h"
 
-namespace Vector3Namespace {
-
 	Vec3::Vec3() : e{ 0,0,0 }
 	{
 
@@ -71,4 +69,3 @@ namespace Vector3Namespace {
 		const auto threshold = 1e-8;
 		return (fabs(e[0] < threshold) && fabs(e[1] < threshold) && fabs(e[2] < threshold));
 	}
-}
