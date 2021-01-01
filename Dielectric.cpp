@@ -1,6 +1,8 @@
 #include "Dielectric.h"
 #include "Hittable.h"
 
+using namespace rtweekend_math;
+
 Dielectric::Dielectric(double refractiveIndex) : refractiveIndex(refractiveIndex)
 {
 }
@@ -14,7 +16,7 @@ bool Dielectric::scatter(const Ray& r_in, const hitRecord& record, Color& attenu
 	double sineTheta = sqrt(1.0 - cosineTheta * cosineTheta);
 	bool cannotRefract = refraction_ratio * sineTheta > 1.0;
 	Vec3 direction;
-	if (cannotRefract || SchlickReflectance(cosineTheta, refraction_ratio)) {
+	if (cannotRefract || SchlickReflectance(cosineTheta, refraction_ratio) > RandomDouble()) {
 		direction = reflect(unit_direction, record.normal);
 	}
 	else {

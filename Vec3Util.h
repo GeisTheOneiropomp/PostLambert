@@ -14,10 +14,10 @@
 	Vec3 operator* (const Vec3 u, double t);
 	Vec3 random();
 	Vec3 random(double min, double max);
-	Vec3 randomInUnitSphere();
-	Vec3 randomUnitVector();
-	Vec3 randomInUnitDisk();
-	Vec3 randomInHemisphere(const Vec3& normal);
+	Vec3 RandomInUnitSphere();
+	Vec3 RandomUnitVector();
+	Vec3 RandomInUnitDisk();
+	Vec3 RandomInHemisphere(const Vec3& normal);
 	Vec3 reflect(const Vec3& v, const Vec3& normal);
 	Vec3 refract(const Vec3& uv, const Vec3 normal, double etai_over_etat);
 

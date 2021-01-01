@@ -1,8 +1,10 @@
 #include "Camera.h"
 
+using namespace rtweekend_math;
+
 Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldOfView,
     double aspectRatio, double aperture, double focusDistance) {
-    auto theta = degrees_to_radians(verticalFieldOfView);
+    auto theta = DegreesToRadians(verticalFieldOfView);
     auto height = tan(theta/2);
     auto viewportHeight = 2.0 * height;
     auto viewportWidth = aspectRatio * viewportHeight;
@@ -21,7 +23,7 @@ Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldO
 
 Ray Camera::getRay(double s, double t) const
 {
-    Vec3 rd = lensRadius * randomInUnitDisk();
+    Vec3 rd = lensRadius * RandomInUnitDisk();
     Vec3 offset = u * rd.x() + v * rd.y();
     return Ray(origin + offset, 
         lowerLeftCorner + s * horizontal + t * vertical - origin - offset);

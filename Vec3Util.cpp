@@ -1,6 +1,8 @@
 #include "Vec3Util.h"
 #include "RTWeekendUtil.h"
 
+using namespace rtweekend_math;
+
     std::ostream& operator<<(std::ostream& out, const Vec3& v)
     {
         return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
@@ -58,41 +60,37 @@
 
     Vec3 random()
     {
-        return Vec3(random_double(), random_double(), random_double());
+        return Vec3(RandomDouble(), RandomDouble(), RandomDouble());
     }
 
     Vec3 random(double min, double max)
     {
-        return Vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+        return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
     }
 
-    Vec3 randomInUnitSphere()
+    Vec3 RandomInUnitSphere()
     {
-        while (true) {
-            auto p = random(-1, 1);
-            if (p.LengthSquared() >= 1) continue;
-            return p;
-        }
+        auto phi = RandomDouble(0, 2 * pi);
+        auto costheta = RandomDouble(-1, 1);
+        auto u = RandomDouble(0, 1);
+        auto theta = acos(costheta);
+        auto r = cbrt(u);
+        return Vec3(r * sin(theta) * cos(phi), r * sin(theta) * sin(phi), r * cos(theta));
     }
 
-    Vec3 randomUnitVector() {
-        return unit_vector(randomInUnitSphere());
+    Vec3 RandomUnitVector() {
+        return unit_vector(RandomInUnitSphere());
     }
 
-    Vec3 randomInHemisphere(const Vec3& normal) {
-        Vec3 inUnitSphere = randomInUnitSphere();
-        if (dot(inUnitSphere, normal) > 0.0) // In the same hemisphere as the normal
-            return inUnitSphere;
-        else
-            return -inUnitSphere;
+    Vec3 RandomInHemisphere(const Vec3& normal) {
+        Vec3 inUnitSphere = RandomInUnitSphere();
+        return (dot(inUnitSphere, normal) > 0.0) ? inUnitSphere : -inUnitSphere;
     }
 
-    Vec3 randomInUnitDisk() {
-        while (true) {
-            auto p = Vec3(random_double(-1, 1), random_double(-1, 1), 0);
-            if (p.LengthSquared() >= 1) continue;
-            return p;
-        }
+    Vec3 RandomInUnitDisk() {
+        auto theta = RandomDouble(0, 2*pi);
+        auto r =  sqrt(RandomDouble(0, 1));
+        return Vec3(cos(theta) * r, sin(theta) * r, 0);
     }
 
     Vec3 reflect(const Vec3& v, const Vec3& normal)

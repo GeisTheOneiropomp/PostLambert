@@ -1,5 +1,6 @@
 #include "ColorUtil.h"
 #include "RTWeekendUtil.h"
+using namespace rtweekend_math;
 namespace ColorUtil {
 	void ColorUtil::WriteColor(std::ostream& out, Color pixel_color, int samplesPerPixel)
 	{
@@ -13,8 +14,8 @@ namespace ColorUtil {
 		g = sqrt(scale * g);
 		b = sqrt(scale * b);
 
-		out << static_cast<int>(256 * clamp(r, 0.0, 0.999)) << ' '
-			<< static_cast<int>(256 * clamp(g, 0.0, 0.999)) << ' '
-			<< static_cast<int>(256 * clamp(b, 0.0, 0.999)) << '\n';
+		out << static_cast<int>(256 * Clamp(r, 0.0, 0.999)) << ' '
+			<< static_cast<int>(256 * Clamp(g, 0.0, 0.999)) << ' '
+			<< static_cast<int>(256 * Clamp(b, 0.0, 0.999)) << '\n';
 	}
 }

@@ -13,6 +13,7 @@
 #include "Metal.h"
 #include "Dielectric.h"
 
+using namespace rtweekend_math;
 HittableList random_scene() {
     HittableList world;
 
@@ -21,8 +22,8 @@ HittableList random_scene() {
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
-            auto choose_mat = random_double();
-            Point3 center(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
+            auto choose_mat = RandomDouble();
+            Point3 center(a + 0.9 * RandomDouble(), 0.2, b + 0.9 * RandomDouble());
 
             if ((center - Point3(4, 0.2, 0)).Length() > 0.9) {
                 shared_ptr<Material> sphere_material;
@@ -36,7 +37,7 @@ HittableList random_scene() {
                 else if (choose_mat < 0.95) {
                     // metal
                     auto albedo = random(0.5, 1);
-                    auto fuzz = random_double(0, 0.5);
+                    auto fuzz = RandomDouble(0, 0.5);
                     sphere_material = make_shared<Metal>(albedo, fuzz);
                     world.add(make_shared<Sphere>(center, 0.2, sphere_material));
                 }
@@ -102,7 +103,7 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 1600;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 2;
+    const int samplesPerPixel = 200;
     const int maxDepth = 30;
 
     //world
@@ -128,8 +129,8 @@ int main() {
         for (int i = 0; i < kImageWidth; ++i) {
             Color pixel_color(0, 0, 0);
             for (int s = 0; s < samplesPerPixel; ++s) {
-                auto u = (i + random_double()) / (kImageWidth - 1);
-                auto v = (j + random_double()) / (kImageHeight - 1);
+                auto u = (i + RandomDouble()) / (kImageWidth - 1);
+                auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
                 pixel_color += ray_color(r, world, maxDepth);
             }
