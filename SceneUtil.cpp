@@ -3,6 +3,8 @@
 #include "Sphere.h"
 #include "Metal.h"
 #include "Dielectric.h"
+#include "ImproperLambert.h"
+#include "LommelSeeliger.h"
 using namespace rtweekend_math;
 
 HittableList RandomScene() {
@@ -19,10 +21,17 @@ HittableList RandomScene() {
             if ((center - Point3(4, 0.2, 0)).Length() > 0.9) {
                 shared_ptr<Material> sphere_material;
 
-                if (choose_mat < 0.8) {
+                if (choose_mat < 0.4) {
                     // diffuse
                     auto albedo = random() * random();
-                    sphere_material = make_shared<Lambertian>(albedo);
+                    sphere_material = make_shared<LommelSeeliger>(albedo);
+                    world.add(make_shared<Sphere>(center, 0.2, sphere_material));
+                }
+
+                else if (choose_mat < 0.8) {
+                    // diffuse
+                    auto albedo = random() * random();
+                    sphere_material = make_shared<LommelSeeliger>(albedo);
                     world.add(make_shared<Sphere>(center, 0.2, sphere_material));
                 }
                 else if (choose_mat < 0.95) {
