@@ -8,9 +8,10 @@
 using namespace rtweekend_math;
 
 HittableList RandomScene() {
+    srand(time(NULL));
     HittableList world;
 
-    auto ground_material = make_shared<Lambertian>(Color(0.5, 0.5, 0.5));
+    auto ground_material = make_shared<Lambertian>(Color(0.0, 0.4, 0.7));
     world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, ground_material));
 
     for (int a = -11; a < 11; a++) {
