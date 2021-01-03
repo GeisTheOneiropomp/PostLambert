@@ -24,8 +24,9 @@ namespace rtweekend_math {
     }
 
     inline double RandomDouble() {
+        static std::random_device rd;  //Will be used to obtain a seed for the random number engine
         static std::uniform_real_distribution<double> distribution(0.0, 1.0);
-        static std::mt19937 generator;
+        static std::mt19937 generator(rd());
         return distribution(generator);
     }
 
