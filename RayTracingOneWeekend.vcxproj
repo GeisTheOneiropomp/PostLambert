@@ -148,6 +148,7 @@
     <ClCompile Include="LommelSeeliger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Metal.cpp" />
+    <ClCompile Include="MovingSphere.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayColorUtil.cpp" />
     <ClCompile Include="SceneUtil.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="LommelSeeliger.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Metal.h" />
+    <ClInclude Include="MovingSphere.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayColorUtil.h" />
     <ClInclude Include="resource.h" />

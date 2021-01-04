@@ -21,9 +21,9 @@ int main() {
 
     // Image
     const auto kAspectRatio = 16.0 / 9.0;
-    const int kImageWidth = 1600;
+    const int kImageWidth = 400;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 2;
+    const int samplesPerPixel = 100;
     const int maxDepth = 30;
 
     //world
@@ -37,7 +37,7 @@ int main() {
     auto dist_to_focus = 10;
     auto aperture = .1;
 
-    Camera cam(lookfrom, lookat, vup, 20, kAspectRatio, aperture, dist_to_focus);
+    Camera cam(lookfrom, lookat, vup, 20, kAspectRatio, aperture, dist_to_focus, 0.0, 1.0);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";

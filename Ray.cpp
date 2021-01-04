@@ -5,7 +5,8 @@ namespace Vector3Namespace {
 	{
 	}
 
-	Ray::Ray(const Point3& origin, const Vec3& direction) : origin_(origin), direction_(direction)
+	Ray::Ray(const Point3& origin, const Vec3& direction, double time) 
+		: origin_(origin), direction_(direction), time_(time)
 	{
 	}
 
@@ -17,6 +18,11 @@ namespace Vector3Namespace {
 	Vec3 Ray::direction() const
 	{
 		return direction_;
+	}
+
+	double Ray::time() const 
+	{
+		return time_;
 	}
 
 	Point3 Ray::at(double time) const

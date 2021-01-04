@@ -5,6 +5,7 @@
 #include "Dielectric.h"
 #include "ImproperLambert.h"
 #include "LommelSeeliger.h"
+#include "MovingSphere.h"
 using namespace rtweekend_math;
 
 HittableList RandomScene() {
@@ -25,8 +26,9 @@ HittableList RandomScene() {
                 if (choose_mat < 0.4) {
                     // diffuse
                     auto albedo = random() * random();
-                    sphere_material = make_shared<LommelSeeliger>(albedo);
-                    world.add(make_shared<Sphere>(center, 0.2, sphere_material));
+                    sphere_material = make_shared<Lambertian>(albedo);
+                    auto center2 = center + Vec3(0, RandomDouble(0, 0.5), 0);
+                    world.add(make_shared<MovingSphere>(center, center2, 0.0, 1.0, 0.2, sphere_material));
                 }
 
                 else if (choose_mat < 0.8) {

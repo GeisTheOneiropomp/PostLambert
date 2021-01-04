@@ -15,7 +15,7 @@ bool LommelSeeliger::scatter(const Ray& r_in, const hitRecord& record, Color& at
 
     auto mu = dot(record.normal, unit_vector(-1 * r_in.direction()));
     auto mu_naught = dot(record.normal, unit_vector(scatter_direction));
-    scattered = Ray(record.point, scatter_direction);
+    scattered = Ray(record.point, scatter_direction, r_in.time());
     attenuation = albedo / 4;
     attenuation = albedo / (mu * mu_naught);
     return true;

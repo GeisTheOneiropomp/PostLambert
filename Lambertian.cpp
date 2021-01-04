@@ -13,7 +13,7 @@ bool Lambertian::scatter(const Ray& r_in, const hitRecord& record, Color& attenu
     if (scatter_direction.nearZero())
         scatter_direction = unitNormal;
 
-    scattered = Ray(record.point, scatter_direction);
+    scattered = Ray(record.point, scatter_direction, r_in.time());
     auto cosine = dot(record.normal, scatter_direction);
     attenuation = cosine * albedo;
     return true;
