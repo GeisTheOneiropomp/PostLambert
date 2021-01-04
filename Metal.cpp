@@ -5,10 +5,10 @@ Metal::Metal(const Color& albedo, double fuzziness)
 {
 }
 
-bool Metal::scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const
+bool Metal::scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const
 {
-	Vec3 reflected = reflect(unit_vector(r_in.direction()), record.normal);
+	Vec3 reflected = Reflect(UnitVector(r_in.direction()), record.normal);
 	scattered = Ray(record.point, reflected + fuzziness*RandomInUnitSphere(), r_in.time());
 	attenuation = albedo;
-	return (dot(scattered.direction(), record.normal) > 0);
+	return (Dot(scattered.direction(), record.normal) > 0);
 }

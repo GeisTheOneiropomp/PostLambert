@@ -31,8 +31,11 @@ namespace rtweekend_math {
     }
 
     inline double RandomDouble(double min, double max) {
-        // Returns a random real in [min,max).
         return min + (max - min) * RandomDouble();
+    }
+
+    inline int RandomInt(int min, int max) {
+        return static_cast<int>(RandomDouble(min, max + 1));
     }
 
     inline double Clamp(double x, double min, double max) {

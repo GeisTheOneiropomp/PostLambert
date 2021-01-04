@@ -11,11 +11,11 @@ Sphere::Sphere(Point3 center, double radius, std::shared_ptr<Material> material)
 {
 }
 
-bool Sphere::hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const
+bool Sphere::Hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const
 {
 	Vec3 origin = r.origin() - center;
 	auto a = r.direction().LengthSquared();
-	auto half_b = dot(origin, r.direction());
+	auto half_b = Dot(origin, r.direction());
 	auto c = origin.LengthSquared() - radius * radius;
 
 	auto discriminant = half_b * half_b - a * c;
@@ -33,8 +33,16 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const
 	rec.t = root;
 	rec.point = r.at(rec.t);
 	Vec3 outwardNormal = (rec.point - center) / radius;
-	rec.setFaceNormal(r, outwardNormal);
-	rec.materialPointer = materialPointer;
+	rec.SetFaceNormal(r, outwardNormal);
+	rec.material_pointer = materialPointer;
 
+	return true;
+}
+
+bool Sphere::BoundingBox(double time0, double time1, AABB& output_box) const
+{
+	output_box = AABB(
+		center - Vec3(radius, radius, radius),
+		center + Vec3(radius, radius, radius));
 	return true;
 }

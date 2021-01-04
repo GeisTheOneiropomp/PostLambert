@@ -13,24 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Materials">
+      <UniqueIdentifier>{354a6a32-dca3-4d6e-ad31-44c15f83546f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Materials">
+      <UniqueIdentifier>{69beee01-f01c-457a-89be-df9d3b9dfc11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Geometry">
+      <UniqueIdentifier>{d7f0fee1-0143-425c-b9d7-e67238b5430e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Geometry">
+      <UniqueIdentifier>{23d95d2f-10a9-4854-98e8-2f2f95211baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{0bba3b27-b621-4f9e-911e-8bc202d6b1c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{0b7a9877-6016-4984-9b1c-174fc78c5375}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ColorUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vec3Util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Ray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HittableList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -40,47 +46,50 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lambertian.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Metal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Dielectric.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RayColorUtil.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Materials</Filter>
     </ClCompile>
     <ClCompile Include="LommelSeeliger.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Materials</Filter>
     </ClCompile>
     <ClCompile Include="ImproperLambert.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Dielectric.cpp">
+      <Filter>Source Files\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="HittableList.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="MovingSphere.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="BVHNode.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec3Util.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneUtil.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="RayColorUtil.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorUtil.cpp">
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColorUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec3Util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Hittable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HittableList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -89,38 +98,59 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RTWeekendUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Lambertian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Metal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Dielectric.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RayColorUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LommelSeeliger.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Materials</Filter>
     </ClInclude>
     <ClInclude Include="ImproperLambert.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Lambertian.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="LommelSeeliger.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Metal.h">
+      <Filter>Header Files\Materials</Filter>
     </ClInclude>
     <ClInclude Include="MovingSphere.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Hittable.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="HittableList.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="BVHNode.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorUtil.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="RayColorUtil.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="RTWeekendUtil.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneUtil.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3Util.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

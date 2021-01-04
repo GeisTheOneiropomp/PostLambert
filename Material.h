@@ -4,10 +4,10 @@
 using namespace Vector3Namespace;
 
 
-struct hitRecord;
+struct HitRecord;
 
 class Material {
 public:
-	virtual bool scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered)
+	virtual bool scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered)
 		const = 0;
 };

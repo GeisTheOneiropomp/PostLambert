@@ -29,7 +29,7 @@
 		return Vec3(-e[0], -e[1], -e[2]);
 	}
 
-	double Vec3::operator[](int i)
+	double Vec3::operator[] (int i) const
 	{
 		return e[i];
 	}

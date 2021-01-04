@@ -6,7 +6,7 @@ class Metal :
 {
 public:
     Metal(const Color& albedo, double fuzziness);
-    virtual bool scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const override;
+    virtual bool scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const override;
 
 public:
     Color albedo;

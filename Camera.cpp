@@ -11,9 +11,9 @@ Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldO
     auto viewportWidth = aspectRatio * viewportHeight;
     auto focalLength = 1.0;
 
-    w = unit_vector(lookFrom - lookAt);
-    u = unit_vector(cross(upVec, w));
-    v = cross(w, u);
+    w = UnitVector(lookFrom - lookAt);
+    u = UnitVector(Cross(upVec, w));
+    v = Cross(w, u);
 
     origin = lookFrom;
     horizontal = focusDistance * viewportWidth * u;

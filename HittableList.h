@@ -14,7 +14,8 @@ public:
 	HittableList(shared_ptr<Hittable> object);
 	void clear();
 	void add(shared_ptr<Hittable> object);
-	virtual bool hit(const Ray& r, double t_min, double t_max, hitRecord& rec) const override;
+	virtual bool Hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const override;
+	virtual bool BoundingBox(double time0, double time1, AABB& output_box) const override;
 public:
 	std::vector<shared_ptr<Hittable>> objects;
 

@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="Dielectric.cpp" />
@@ -157,6 +159,8 @@
     <ClCompile Include="Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
+    <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorUtil.h" />
     <ClInclude Include="Dielectric.h" />

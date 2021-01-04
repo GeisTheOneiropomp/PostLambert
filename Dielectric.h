@@ -6,7 +6,7 @@ class Dielectric :
 {
 public:
     Dielectric(double refractiveIndex);
-    virtual bool scatter(const Ray& r_in, const hitRecord& record, Color& attenuation, Ray& scattered) const override;
+    virtual bool scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const override;
 public:
     double refractiveIndex;
 private:
