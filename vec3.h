@@ -7,9 +7,9 @@
 
 		Vec3();
 		Vec3(double e0, double e1, double e2);
-		double x();
-		double y();
-		double z();
+		double x() const;
+		double y() const;
+		double z() const;
 		Vec3 operator-() const;
 		double operator[] (int i) const;
 		Vec3& operator+= (const Vec3 v);

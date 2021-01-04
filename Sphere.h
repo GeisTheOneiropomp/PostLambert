@@ -1,7 +1,9 @@
 #pragma once
 #include "vec3.h"
 #include "Hittable.h"
-using namespace Vector3Namespace;
+#include "Vec3Util.h"
+#include "RTWeekendUtil.h"
+
 class Sphere : public Hittable 
 {
 public:
@@ -13,5 +15,8 @@ public:
 	Point3 center;
 	double radius;
 	std::shared_ptr<Material> materialPointer;
+
+private:
+	static void getSphereUV(const Point3& point, double& u, double& v);
 };
 

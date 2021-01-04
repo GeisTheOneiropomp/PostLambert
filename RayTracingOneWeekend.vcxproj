@@ -142,6 +142,7 @@
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CheckerTexture.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="Dielectric.cpp" />
     <ClCompile Include="HittableList.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayColorUtil.cpp" />
     <ClCompile Include="SceneUtil.cpp" />
+    <ClCompile Include="SolidColor.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
@@ -162,6 +164,7 @@
     <ClInclude Include="AABB.h" />
     <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CheckerTexture.h" />
     <ClInclude Include="ColorUtil.h" />
     <ClInclude Include="Dielectric.h" />
     <ClInclude Include="Hittable.h" />
@@ -177,7 +180,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="RTWeekendUtil.h" />
     <ClInclude Include="SceneUtil.h" />
+    <ClInclude Include="SolidColor.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec3Util.h" />
   </ItemGroup>

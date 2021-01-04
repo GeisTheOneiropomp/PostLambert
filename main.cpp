@@ -23,7 +23,7 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 400;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 100;
+    const int samplesPerPixel = 500;
     const int maxDepth = 30;
 
     //world

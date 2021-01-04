@@ -9,17 +9,17 @@
 	{
 	}
 
-	double Vec3::x()
+	double Vec3::x() const
 	{
 		return e[0];
 	}
 
-	double Vec3::y()
+	double Vec3::y() const
 	{
 		return e[1];
 	}
 
-	double Vec3::z()
+	double Vec3::z()const
 	{
 		return e[2];
 	}

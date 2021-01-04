@@ -6,14 +6,15 @@
 #include "ImproperLambert.h"
 #include "LommelSeeliger.h"
 #include "MovingSphere.h"
+#include "CheckerTexture.h"
 using namespace rtweekend_math;
 
 HittableList RandomScene() {
     srand(time(NULL));
     HittableList world;
 
-    auto ground_material = make_shared<Lambertian>(Color(0.0, 0.4, 0.7));
-    world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, ground_material));
+    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
+    world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(checker)));
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
@@ -26,7 +27,7 @@ HittableList RandomScene() {
                 if (choose_mat < 0.4) {
                     // diffuse
                     auto albedo = random() * random();
-                    sphere_material = make_shared<Lambertian>(albedo);
+                    sphere_material = make_shared<LommelSeeliger>(albedo);
                     auto center2 = center + Vec3(0, RandomDouble(0, 0.5), 0);
                     world.add(make_shared<MovingSphere>(center, center2, 0.0, 1.0, 0.2, sphere_material));
                 }
@@ -34,7 +35,7 @@ HittableList RandomScene() {
                 else if (choose_mat < 0.8) {
                     // diffuse
                     auto albedo = random() * random();
-                    sphere_material = make_shared<LommelSeeliger>(albedo);
+                    sphere_material = make_shared<Lambertian>(albedo);
                     world.add(make_shared<Sphere>(center, 0.2, sphere_material));
                 }
                 else if (choose_mat < 0.95) {
