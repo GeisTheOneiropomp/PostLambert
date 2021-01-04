@@ -99,6 +99,9 @@
     <ClCompile Include="CheckerTexture.cpp">
       <Filter>Source Files\Textures</Filter>
     </ClCompile>
+    <ClCompile Include="ImageTexture.cpp">
+      <Filter>Source Files\Textures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ray.h">
@@ -171,6 +174,12 @@
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
     <ClInclude Include="CheckerTexture.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="rtw_stb_image.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTexture.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
   </ItemGroup>

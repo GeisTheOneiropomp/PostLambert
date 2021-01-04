@@ -146,6 +146,7 @@
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="Dielectric.cpp" />
     <ClCompile Include="HittableList.cpp" />
+    <ClCompile Include="ImageTexture.cpp" />
     <ClCompile Include="ImproperLambert.cpp" />
     <ClCompile Include="Lambertian.cpp" />
     <ClCompile Include="LommelSeeliger.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Dielectric.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
+    <ClInclude Include="ImageTexture.h" />
     <ClInclude Include="ImproperLambert.h" />
     <ClInclude Include="Lambertian.h" />
     <ClInclude Include="LommelSeeliger.h" />
@@ -179,6 +181,7 @@
     <ClInclude Include="RayColorUtil.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RTWeekendUtil.h" />
+    <ClInclude Include="rtw_stb_image.h" />
     <ClInclude Include="SceneUtil.h" />
     <ClInclude Include="SolidColor.h" />
     <ClInclude Include="Sphere.h" />

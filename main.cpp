@@ -14,8 +14,28 @@
 #include "Dielectric.h"
 #include "SceneUtil.h"
 #include "RayColorUtil.h"
+#include "ImageTexture.h"
+#include "CheckerTexture.h"
 
 using namespace rtweekend_math;
+
+HittableList earth() {
+    auto earth_texture = make_shared<ImageTexture>("img\\earthmap.jpg");
+    auto earth_surface = make_shared<Lambertian>(earth_texture);
+    auto globe = make_shared<Sphere>(Point3(0, 0, 0), 2, earth_surface);
+    return HittableList(globe);
+}
+
+HittableList two_spheres() {
+    HittableList objects;
+
+    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
+
+    objects.add(make_shared<Sphere>(Point3(0, -10, 0), 10, make_shared<Lambertian>(checker)));
+    objects.add(make_shared<Sphere>(Point3(0, 10, 0), 10, make_shared<Lambertian>(checker)));
+
+    return objects;
+}
 
 int main() {
 
@@ -23,21 +43,45 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 400;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 500;
+    const int samplesPerPixel = 10;
     const int maxDepth = 30;
 
     //world
     auto R = cos(pi / 4);
 
-    auto world = RandomScene();
-
+    auto world = earth();
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);
     Vec3 vup(0, 1, 0);
     auto dist_to_focus = 10;
-    auto aperture = .1;
+    auto aperture = 0.0;
+    double fieldOfView = 40;
 
-    Camera cam(lookfrom, lookat, vup, 20, kAspectRatio, aperture, dist_to_focus, 0.0, 1.0);
+    switch (3) {
+    case 1:
+        world = RandomScene();
+        lookfrom = Point3(13, 2, 3);
+        lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        aperture = 0.1;
+        break;
+    case 2:
+        world = two_spheres();
+        lookfrom = Point3(13, 2, 3);
+        lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        break;
+
+    default:
+    case 3:
+        world = earth();
+        lookfrom = Point3(13, 2, 3);
+        lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        break;
+    }
+
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, dist_to_focus, 0.0, 1.0);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
