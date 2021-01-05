@@ -16,6 +16,7 @@
 #include "RayColorUtil.h"
 #include "ImageTexture.h"
 #include "CheckerTexture.h"
+#include "NoiseTexture.h"
 
 using namespace rtweekend_math;
 
@@ -28,11 +29,18 @@ HittableList earth() {
 
 HittableList two_spheres() {
     HittableList objects;
-
     auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
-
     objects.add(make_shared<Sphere>(Point3(0, -10, 0), 10, make_shared<Lambertian>(checker)));
     objects.add(make_shared<Sphere>(Point3(0, 10, 0), 10, make_shared<Lambertian>(checker)));
+    return objects;
+}
+
+HittableList two_perlin_spheres() {
+    HittableList objects;
+
+    auto pertext = make_shared<NoiseTexture>();
+    objects.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
+    objects.add(make_shared<Sphere>(Point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
 
     return objects;
 }
@@ -41,7 +49,7 @@ int main() {
 
     // Image
     const auto kAspectRatio = 16.0 / 9.0;
-    const int kImageWidth = 400;
+    const int kImageWidth = 1600;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
     const int samplesPerPixel = 10;
     const int maxDepth = 30;
@@ -57,7 +65,7 @@ int main() {
     auto aperture = 0.0;
     double fieldOfView = 40;
 
-    switch (3) {
+    switch (4) {
     case 1:
         world = RandomScene();
         lookfrom = Point3(13, 2, 3);
@@ -71,10 +79,15 @@ int main() {
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
         break;
-
     default:
     case 3:
         world = earth();
+        lookfrom = Point3(13, 2, 3);
+        lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        break;
+    case 4:
+        world = two_perlin_spheres();
         lookfrom = Point3(13, 2, 3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;

@@ -33,6 +33,11 @@ using namespace rtweekend_math;
         return Vec3(v.e[0] * t, v.e[1] * t, v.e[2] * t);
     }
 
+    Vec3 operator*(const Vec3 u, double t)
+    {
+        return Vec3(u.e[0] * t, u.e[1] * t, u.e[2] * t);
+    }
+
     double Dot(const Vec3& u, const Vec3& v)
     {
         return  u.e[0] * v.e[0] +
@@ -51,11 +56,6 @@ using namespace rtweekend_math;
     Vec3 UnitVector(Vec3 u)
     {
         return u / u.Length();
-    }
-
-    Vec3 operator*(const Vec3 u, double t)
-    {
-        return Vec3(u.e[0] * t, u.e[1] * t, u.e[2] * t);
     }
 
     Vec3 random()
