@@ -9,10 +9,10 @@ public:
 private:
 	static int* PerlinGeneratePerm();
 	static void Permute(int* p, int n);
-	static double TrilinearInterpolation(double c[2][2][2], double u, double v, double w);
+	static double TrilinearInterpolation(Vec3 c[2][2][2], double u, double v, double w);
 
 	static const int point_count = 256;
-	double* random_floats;
+	Vec3* randomVectors;
 	int* perm_x;
 	int* perm_y;
 	int* perm_z;
