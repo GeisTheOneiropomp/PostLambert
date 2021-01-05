@@ -38,7 +38,7 @@ HittableList two_spheres() {
 HittableList two_perlin_spheres() {
     HittableList objects;
 
-    auto pertext = make_shared<NoiseTexture>();
+    auto pertext = make_shared<NoiseTexture>(10);
     objects.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
     objects.add(make_shared<Sphere>(Point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
 

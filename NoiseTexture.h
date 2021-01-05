@@ -6,7 +6,9 @@ class NoiseTexture : public Texture
 {
 public:
 	NoiseTexture();
+	NoiseTexture(double scale);
 	virtual Color value(double u, double v, const Point3& p) const override;
 	Perlin noise;
+	double scale;
 };
 
