@@ -47,6 +47,20 @@ double Perlin::Noise(const Point3& point) const
 	return TrilinearInterpolation(c, u, v, w);
 }
 
+double Perlin::Turbulence(const Point3& point, int depth) const
+{
+	auto accumulation = 0.0;
+	auto temp_point = point;
+	auto weight = 1.0;
+
+	for (int i = 0; i < depth; i++) {
+		accumulation += weight * Noise(temp_point);
+		weight *= 0.5;
+		temp_point *= 2;
+	}
+	return fabs(accumulation);
+}
+
 int* Perlin::PerlinGeneratePerm()
 {
 	auto p = new int[point_count];
