@@ -20,16 +20,14 @@
 
 using namespace rtweekend_math;
 
-
-
 int main() {
 
     // Image
-    const auto kAspectRatio = 16.0 / 9.0;
-    const int kImageWidth = 1600;
-    const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
+    auto kAspectRatio = 16.0 / 9.0;
+    int kImageWidth = 1600;
+    int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
     int samplesPerPixel = 10;
-    const int maxDepth = 30;
+    int maxDepth = 30;
 
     //world
     auto R = cos(pi / 4);
@@ -43,7 +41,7 @@ int main() {
     double fieldOfView = 40;
     Color background(0, 0, 0);
 
-    switch (5) {
+    switch (0) {
     case 1:
         world = RandomScene();
         lookfrom = Point3(13, 2, 3);
@@ -73,7 +71,6 @@ int main() {
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
         break;
-    default:
     case 5:
         world = simple_light();
         samplesPerPixel = 400;
@@ -81,6 +78,17 @@ int main() {
         lookfrom = Point3(26, 3, 6);
         lookat = Point3(0, 2, 0);
         fieldOfView = 20.0;
+        break;
+    default:
+    case 6:
+        world = CornellBox();
+        kAspectRatio = 1.0;
+        kImageWidth = 600;
+        samplesPerPixel = 200;
+        background = Color(0, 0, 0);
+        lookfrom = Point3(278, 278, -800);
+        lookat = Point3(278, 278, 0);
+        fieldOfView = 40.0;
         break;
     }
 

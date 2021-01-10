@@ -11,7 +11,30 @@
 #include "ImageTexture.h"
 #include "DiffuseLight.h"
 #include "XYRectangle.h"
+#include "YZRectangle.h"
+#include "XZRectangle.h"
+#include "Box.h"
 using namespace rtweekend_math;
+
+HittableList CornellBox() {
+    HittableList objects;
+
+    auto red = make_shared<Lambertian>(Color(.65, .05, .05));
+    auto white = make_shared<Lambertian>(Color(.73, .73, .73));
+    auto green = make_shared<Lambertian>(Color(.12, .45, .15));
+    auto light = make_shared<DiffuseLight>(Color(15, 15, 15));
+
+    objects.add(make_shared<YZRectangle>(0, 555, 0, 555, 555, green));
+    objects.add(make_shared<YZRectangle>(0, 555, 0, 555, 0, red));
+    objects.add(make_shared<XZRectangle>(213, 343, 227, 332, 554, light));
+    objects.add(make_shared<XZRectangle>(0, 555, 0, 555, 0, white));
+    objects.add(make_shared<XZRectangle>(0, 555, 0, 555, 555, white));
+    objects.add(make_shared<XYRectangle>(0, 555, 0, 555, 555, white));
+
+    objects.add(make_shared<Box>(Point3(130, 0, 65), Point3(295, 165, 230), white));
+    objects.add(make_shared<Box>(Point3(265, 0, 295), Point3(430, 330, 460), white));
+    return objects;
+}
 
 HittableList simple_light() {
     HittableList objects;
