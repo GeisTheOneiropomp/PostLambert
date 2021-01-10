@@ -20,30 +20,7 @@
 
 using namespace rtweekend_math;
 
-HittableList earth() {
-    auto earth_texture = make_shared<ImageTexture>("img\\earthmap.jpg");
-    auto earth_surface = make_shared<Lambertian>(earth_texture);
-    auto globe = make_shared<Sphere>(Point3(0, 0, 0), 2, earth_surface);
-    return HittableList(globe);
-}
 
-HittableList two_spheres() {
-    HittableList objects;
-    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
-    objects.add(make_shared<Sphere>(Point3(0, -10, 0), 10, make_shared<Lambertian>(checker)));
-    objects.add(make_shared<Sphere>(Point3(0, 10, 0), 10, make_shared<Lambertian>(checker)));
-    return objects;
-}
-
-HittableList two_perlin_spheres() {
-    HittableList objects;
-
-    auto pertext = make_shared<NoiseTexture>(10);
-    objects.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
-    objects.add(make_shared<Sphere>(Point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
-
-    return objects;
-}
 
 int main() {
 
@@ -51,7 +28,7 @@ int main() {
     const auto kAspectRatio = 16.0 / 9.0;
     const int kImageWidth = 1600;
     const int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    const int samplesPerPixel = 10;
+    int samplesPerPixel = 10;
     const int maxDepth = 30;
 
     //world
@@ -66,7 +43,7 @@ int main() {
     double fieldOfView = 40;
     Color background(0, 0, 0);
 
-    switch (4) {
+    switch (5) {
     case 1:
         world = RandomScene();
         lookfrom = Point3(13, 2, 3);
@@ -82,7 +59,6 @@ int main() {
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
         break;
-    default:
     case 3:
         world = earth();
         background = Color(0.70, 0.80, 1.00);
@@ -95,6 +71,15 @@ int main() {
         background = Color(0.90, 0.60, 0.60);
         lookfrom = Point3(13, 2, 3);
         lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        break;
+    default:
+    case 5:
+        world = simple_light();
+        samplesPerPixel = 400;
+        background = Color(0, 0, 0);
+        lookfrom = Point3(26, 3, 6);
+        lookat = Point3(0, 2, 0);
         fieldOfView = 20.0;
         break;
     }

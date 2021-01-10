@@ -11,7 +11,7 @@ public:
     DiffuseLight(std::shared_ptr<Texture> texture);
     DiffuseLight(Color color);
 
-    virtual bool scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered);
+    virtual bool scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const override;
     virtual Color emitted(double u, double v, const Point3& p) const override;
 
 public:

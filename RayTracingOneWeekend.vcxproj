@@ -163,6 +163,9 @@
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
+    <ClCompile Include="XYRectangle.cpp" />
+    <ClCompile Include="XZRectangle.cpp" />
+    <ClCompile Include="YZRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
@@ -194,6 +197,9 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec3Util.h" />
+    <ClInclude Include="XYRectangle.h" />
+    <ClInclude Include="XZRectangle.h" />
+    <ClInclude Include="YZRectangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RayTracingOneWeekend.rc" />

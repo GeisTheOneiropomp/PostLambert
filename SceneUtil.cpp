@@ -7,7 +7,49 @@
 #include "LommelSeeliger.h"
 #include "MovingSphere.h"
 #include "CheckerTexture.h"
+#include "NoiseTexture.h"
+#include "ImageTexture.h"
+#include "DiffuseLight.h"
+#include "XYRectangle.h"
 using namespace rtweekend_math;
+
+HittableList simple_light() {
+    HittableList objects;
+
+    auto pertext = make_shared<NoiseTexture>(4);
+    objects.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
+    objects.add(make_shared<Sphere>(Point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
+
+    auto difflight = make_shared<DiffuseLight>(Color(4, 4, 4));
+    objects.add(make_shared<XYRectangle>(3, 5, 1, 3, -2, difflight));
+
+    return objects;
+}
+
+HittableList earth() {
+    auto earth_texture = make_shared<ImageTexture>("img\\earthmap.jpg");
+    auto earth_surface = make_shared<Lambertian>(earth_texture);
+    auto globe = make_shared<Sphere>(Point3(0, 0, 0), 2, earth_surface);
+    return HittableList(globe);
+}
+
+HittableList two_spheres() {
+    HittableList objects;
+    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
+    objects.add(make_shared<Sphere>(Point3(0, -10, 0), 10, make_shared<Lambertian>(checker)));
+    objects.add(make_shared<Sphere>(Point3(0, 10, 0), 10, make_shared<Lambertian>(checker)));
+    return objects;
+}
+
+HittableList two_perlin_spheres() {
+    HittableList objects;
+
+    auto pertext = make_shared<NoiseTexture>(10);
+    objects.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
+    objects.add(make_shared<Sphere>(Point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
+
+    return objects;
+}
 
 HittableList RandomScene() {
     srand(time(NULL));
