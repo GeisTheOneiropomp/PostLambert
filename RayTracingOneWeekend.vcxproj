@@ -145,6 +145,7 @@
     <ClCompile Include="CheckerTexture.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
     <ClCompile Include="Dielectric.cpp" />
+    <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="ImageTexture.cpp" />
     <ClCompile Include="ImproperLambert.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="CheckerTexture.h" />
     <ClInclude Include="ColorUtil.h" />
     <ClInclude Include="Dielectric.h" />
+    <ClInclude Include="DiffuseLight.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
     <ClInclude Include="ImageTexture.h" />

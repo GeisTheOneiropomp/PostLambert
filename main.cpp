@@ -64,17 +64,20 @@ int main() {
     auto dist_to_focus = 10;
     auto aperture = 0.0;
     double fieldOfView = 40;
+    Color background(0, 0, 0);
 
     switch (4) {
     case 1:
         world = RandomScene();
         lookfrom = Point3(13, 2, 3);
+        background = Color(0.70, 0.80, 1.00);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
         aperture = 0.1;
         break;
     case 2:
         world = two_spheres();
+        background = Color(0.70, 0.80, 1.00);
         lookfrom = Point3(13, 2, 3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
@@ -82,12 +85,14 @@ int main() {
     default:
     case 3:
         world = earth();
+        background = Color(0.70, 0.80, 1.00);
         lookfrom = Point3(13, 2, 3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
         break;
     case 4:
         world = two_perlin_spheres();
+        background = Color(0.90, 0.60, 0.60);
         lookfrom = Point3(13, 2, 3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
@@ -107,7 +112,7 @@ int main() {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
-                pixel_color += RayColor(r, world, maxDepth);
+                pixel_color += RayColorWithBackground(r, background, world, maxDepth);
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }
