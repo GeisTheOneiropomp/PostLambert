@@ -34,6 +34,11 @@
 		return e[i];
 	}
 
+	double& Vec3::operator[](int i)
+	{
+		return e[i];
+	}
+
 	Vec3& Vec3::operator+=(const Vec3 v)
 	{
 		e[0] += v.e[0];

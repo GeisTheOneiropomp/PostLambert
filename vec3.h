@@ -12,6 +12,7 @@
 		double z() const;
 		Vec3 operator-() const;
 		double operator[] (int i) const;
+		double& operator[](int i);
 		Vec3& operator+= (const Vec3 v);
 		Vec3& operator*= (const double t);
 		Vec3& operator/= (const double t);

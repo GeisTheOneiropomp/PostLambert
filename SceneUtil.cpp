@@ -14,14 +14,16 @@
 #include "YZRectangle.h"
 #include "XZRectangle.h"
 #include "Box.h"
+#include "Translate.h"
+#include "YRotate.h"
 using namespace rtweekend_math;
 
 HittableList CornellBox() {
     HittableList objects;
 
-    auto red = make_shared<Lambertian>(Color(.65, .05, .05));
-    auto white = make_shared<Lambertian>(Color(.73, .73, .73));
-    auto green = make_shared<Lambertian>(Color(.12, .45, .15));
+    auto red = make_shared<ImproperLambert>(Color(.65, .05, .05));
+    auto white = make_shared<ImproperLambert>(Color(.73, .73, .73));
+    auto green = make_shared<ImproperLambert>(Color(.12, .45, .15));
     auto light = make_shared<DiffuseLight>(Color(15, 15, 15));
 
     objects.add(make_shared<YZRectangle>(0, 555, 0, 555, 555, green));
@@ -31,8 +33,15 @@ HittableList CornellBox() {
     objects.add(make_shared<XZRectangle>(0, 555, 0, 555, 555, white));
     objects.add(make_shared<XYRectangle>(0, 555, 0, 555, 555, white));
 
-    objects.add(make_shared<Box>(Point3(130, 0, 65), Point3(295, 165, 230), white));
-    objects.add(make_shared<Box>(Point3(265, 0, 295), Point3(430, 330, 460), white));
+    shared_ptr<Hittable> box1 = make_shared<Box>(Point3(0, 0, 0), Point3(165, 330, 165), white);
+    box1 = make_shared<YRotate>(box1, 15);
+    box1 = make_shared<Translate>(box1, Vec3(265, 0, 295));
+    objects.add(box1);
+
+    shared_ptr<Hittable> box2 = make_shared<Box>(Point3(0, 0, 0), Point3(165, 165, 165), white);
+    box2 = make_shared<YRotate>(box2, -18);
+    box2 = make_shared<Translate>(box2, Vec3(130, 0, 65));
+    objects.add(box2);
     return objects;
 }
 

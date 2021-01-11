@@ -162,10 +162,12 @@
     <ClCompile Include="SceneUtil.cpp" />
     <ClCompile Include="SolidColor.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Translate.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
     <ClCompile Include="XYRectangle.cpp" />
     <ClCompile Include="XZRectangle.cpp" />
+    <ClCompile Include="YRotate.cpp" />
     <ClCompile Include="YZRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -197,10 +199,12 @@
     <ClInclude Include="SolidColor.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Translate.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec3Util.h" />
     <ClInclude Include="XYRectangle.h" />
     <ClInclude Include="XZRectangle.h" />
+    <ClInclude Include="YRotate.h" />
     <ClInclude Include="YZRectangle.h" />
   </ItemGroup>
   <ItemGroup>
