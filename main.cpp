@@ -97,11 +97,13 @@ int main() {
         lookfrom = Point3(278, 278, -800);
         lookat = Point3(278, 278, 0);
         fieldOfView = 40.0;
-        break;
+        break; 
     default:
     case 8:
         world = MoonScene();
-        lookfrom = Point3(13, 2, 3);
+        kAspectRatio = 2.0;
+        lookfrom = Point3(3.25, .5, 10);
+        samplesPerPixel = 500;
         background = Color(0.3, 0.3, 0.3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;

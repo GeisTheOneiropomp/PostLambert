@@ -19,6 +19,7 @@
 #include "HittableList.h"
 #include "ConstantMedium.h"
 #include "BVHNode.h"
+#include "LunarLambert.h"
 
 using namespace rtweekend_math;
 
@@ -241,12 +242,9 @@ HittableList MoonScene() {
     HittableList world;
 
     auto moon_texture = make_shared<ImageTexture>("img\\moon.jpg");
-    auto moon_surface = make_shared<LommelSeeliger>(moon_texture);
-    auto moon = make_shared<Sphere>(Point3(0, 1, 0), 2, moon_surface);
+    auto moon_surface = make_shared<LunarLambert>(moon_texture, .5, .5);
+    auto moon = make_shared<Sphere>(Point3(0, 0, 0), 1.75, moon_surface);
     world.add(moon);
-
-    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
-    world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(checker)));
 
     return world;
 }
