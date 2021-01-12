@@ -7,3 +7,5 @@ HittableList two_spheres();
 HittableList earth();
 HittableList simple_light();
 HittableList CornellBox();
+HittableList CornellSmoke();
+HittableList MoonScene();

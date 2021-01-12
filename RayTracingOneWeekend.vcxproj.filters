@@ -127,7 +127,13 @@
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="YRotate.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Isotropic.cpp">
+      <Filter>Source Files\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantMedium.cpp">
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +240,13 @@
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="YRotate.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Isotropic.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantMedium.h">
+      <Filter>Header Files\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

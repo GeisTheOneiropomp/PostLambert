@@ -28,6 +28,6 @@ bool YZRectangle::Hit(const Ray& r, double t_min, double t_max, HitRecord& rec) 
 
 bool YZRectangle::BoundingBox(double time0, double time1, AABB& output_box) const
 {
-	output_box = AABB(Point3(y0, z0, k - 0.0001), Point3(y1, z1, k + 0.0001));
+	output_box = AABB(Point3(k - 0.0001, y0, z0), Point3(k + 0.0001, y1, z1));
 	return false;
 }

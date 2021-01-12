@@ -79,16 +79,33 @@ int main() {
         lookat = Point3(0, 2, 0);
         fieldOfView = 20.0;
         break;
-    default:
     case 6:
         world = CornellBox();
         kAspectRatio = 1.0;
         kImageWidth = 600;
-        samplesPerPixel = 200;
+        samplesPerPixel = 100;
         background = Color(0, 0, 0);
         lookfrom = Point3(278, 278, -800);
         lookat = Point3(278, 278, 0);
         fieldOfView = 40.0;
+        break;
+    case 7:
+        world = CornellSmoke();
+        kAspectRatio = 1.0;
+        kImageWidth = 700;
+        samplesPerPixel = 200;
+        lookfrom = Point3(278, 278, -800);
+        lookat = Point3(278, 278, 0);
+        fieldOfView = 40.0;
+        break;
+    default:
+    case 8:
+        world = MoonScene();
+        lookfrom = Point3(13, 2, 3);
+        background = Color(0.3, 0.3, 0.3);
+        lookat = Point3(0, 0, 0);
+        fieldOfView = 20.0;
+        aperture = 0.1;
         break;
     }
 

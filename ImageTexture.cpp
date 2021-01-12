@@ -29,7 +29,7 @@ ImageTexture::~ImageTexture()
 Color ImageTexture::value(double u, double v, const Vec3& p) const
 {
 
-    // If we have no texture data, then return solid cyan as a debugging aid.
+    // If we have no texture data, then return solid red as a debugging aid.
     if (data == nullptr)
         return Color(1, 0, 0);
 
