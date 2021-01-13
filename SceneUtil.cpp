@@ -20,6 +20,7 @@
 #include "ConstantMedium.h"
 #include "BVHNode.h"
 #include "LunarLambert.h"
+#include "Minnaert.h"
 
 using namespace rtweekend_math;
 
@@ -242,7 +243,7 @@ HittableList MoonScene() {
     HittableList world;
 
     auto moon_texture = make_shared<ImageTexture>("img\\moon.jpg");
-    auto moon_surface = make_shared<LunarLambert>(moon_texture, .5, .5);
+    auto moon_surface = make_shared<Minnaert>(moon_texture, 2);
     auto moon = make_shared<Sphere>(Point3(0, 0, 0), 1.75, moon_surface);
     world.add(moon);
 

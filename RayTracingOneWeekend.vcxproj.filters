@@ -136,7 +136,10 @@
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="LunarLambert.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Minnaert.cpp">
+      <Filter>Source Files\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +255,10 @@
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="LunarLambert.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Minnaert.h">
+      <Filter>Header Files\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

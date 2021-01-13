@@ -157,6 +157,7 @@
     <ClCompile Include="LunarLambert.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Metal.cpp" />
+    <ClCompile Include="Minnaert.cpp" />
     <ClCompile Include="MovingSphere.cpp" />
     <ClCompile Include="NoiseTexture.cpp" />
     <ClCompile Include="Perlin.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="LunarLambert.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Metal.h" />
+    <ClInclude Include="Minnaert.h" />
     <ClInclude Include="MovingSphere.h" />
     <ClInclude Include="NoiseTexture.h" />
     <ClInclude Include="Perlin.h" />
