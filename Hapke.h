@@ -14,7 +14,6 @@ public:
 
 private:
     double HFunction(const double input, const Color albedo) const;
-    double ScatterMode1(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const;
     
 public:
     shared_ptr<Texture> albedo;

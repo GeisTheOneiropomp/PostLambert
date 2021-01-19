@@ -32,7 +32,7 @@ double OneTermHenyeyGreenstein(const double asymmetry_factor, const double phase
 }
 
 double cot(const double i) {
-    return sin(i) / cos(i);
+    return cos(i) / sin(i);
 }
 
 double HapkeF(const double psi)
@@ -42,7 +42,7 @@ double HapkeF(const double psi)
 
 double HapkeChi(const double theta)
 {
-    return 1/(pow(.5,(1+ pi * tan(theta))));
+    return 1/(pow(.5,(1 + pi * pow(2, tan(theta)))));
 }
 
 double HapkeE1(const double theta, const double y)
@@ -60,23 +60,43 @@ double HapkeEta(const double theta, const double y)
     return HapkeChi(theta) * (cos(y) + sin(y)*tan(theta)*(HapkeE2(theta, y) / (2 - HapkeE1(theta, y))));
 }
 
-double HapkeMuNaught(const double theta, const double i, const double e, const double psi)
+double HapkeMuNaught1(const double theta, const double i, const double e, const double psi)
 {
-    return HapkeChi(theta) * cos(i) + sin(i) * tan(theta) * ( (cos(psi) * HapkeE2(theta, e) +
-        pow(2, sin(psi/2)) * HapkeE2(theta, i) / (2 - HapkeE1(theta, e) - (psi/pi) * HapkeE1(theta, i))));
+    return HapkeChi(theta) * (cos(i) + (sin(i) * tan(theta) * (cos(psi) * HapkeE2(theta, e) +
+        pow(2, sin(psi/2)) * HapkeE2(theta, i)) / (2 - HapkeE1(theta, e) - (psi/pi) * HapkeE1(theta, i))));
 }
 
-double HapkeMu(const double theta, const double i, const double e, const double psi)
+double HapkeMu1(const double theta, const double i, const double e, const double psi)
 {
-    return HapkeChi(theta) * cos(e) + sin(e) * tan(theta) * ((HapkeE2(theta, e) - pow(2, sin(psi/2)) *
-        HapkeE2(theta, i) / (2 - HapkeE1(theta, e) - (psi / pi) * HapkeE1(theta, i))));
+    return HapkeChi(theta) * (cos(e) + (sin(e) * tan(theta) * (HapkeE2(theta, e) - pow(2, sin(psi/2)) *
+        HapkeE2(theta, i)) / (2 - HapkeE1(theta, e) - (psi / pi) * HapkeE1(theta, i))));
 }
 
 // psi is the azimuth angle between the source and the detector planes
-// i is the angle of incidencce
+// i is the angle of incidence
 // e is the angle of emergence
-double HapkeShadowing(const double theta, const double i, const double e, const double psi)
+double HapkeShadowing1(const double theta, const double i, const double e, const double psi)
 {
-    return (HapkeMu(theta, i, e, psi) / (HapkeEta(theta, e)) * (HapkeMuNaught(theta, i, e, psi) / HapkeEta(theta, i)) *
-        (HapkeChi(theta) / (1 - HapkeF(psi) + HapkeF(psi) * HapkeChi(theta) * (HapkeMu(theta, i, e, psi) / HapkeEta(theta,i)))) );
+    return (HapkeMu1(theta, i, e, psi) / (HapkeEta(theta, e))) * 
+        (HapkeMuNaught1(theta, i, e, psi) / HapkeEta(theta, i)) *
+        (HapkeChi(theta) / (1 - HapkeF(psi) + (HapkeF(psi) * HapkeChi(theta) * (HapkeMuNaught1(theta, i, e, psi) / HapkeEta(theta,i)))));
+}
+
+double HapkeMuNaught2(const double theta, const double i, const double e, const double psi)
+{
+    return HapkeChi(theta) * (cos(i) + (sin(i) * tan(theta) * (HapkeE2(theta, i) -
+        pow(2, sin(psi / 2)) * HapkeE2(theta, e)) / (2 - HapkeE1(theta, i) - (psi / pi) * HapkeE1(theta, e))));
+}
+
+double HapkeMu2(const double theta, const double i, const double e, const double psi)
+{
+    return HapkeChi(theta) * (cos(e) + (sin(e) * tan(theta) * (HapkeE2(theta, e) - pow(2, sin(psi / 2)) *
+        HapkeE2(theta, i)) / (2 - HapkeE1(theta, e) - (psi / pi) * HapkeE1(theta, i))));
+}
+
+double HapkeShadowing2(const double theta, const double i, const double e, const double psi)
+{
+    return (HapkeMu2(theta, i, e, psi) / (HapkeEta(theta, e))) * 
+        (HapkeMuNaught2(theta, i, e, psi) / HapkeEta(theta, i)) *
+        (HapkeChi(theta) / (1 - HapkeF(psi) + (HapkeF(psi) * HapkeChi(theta) * (HapkeMu2(theta, i, e, psi) / HapkeEta(theta, e)))));
 }

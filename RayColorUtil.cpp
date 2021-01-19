@@ -1,5 +1,5 @@
 #include "RayColorUtil.h"
-
+#include "math.h"
 
 Color RayColor(const Ray& ray, const Hittable& world, int depth) {
 
@@ -41,6 +41,7 @@ Color RayColorWithBackground(const Ray& ray, const Color& background, const Hitt
     if (!record.material_pointer->scatter(ray, record, attenuation, scattered)) {
         return emitted;
     }
+
 
     return emitted + attenuation * RayColorWithBackground(scattered, background, world, depth - 1);
 

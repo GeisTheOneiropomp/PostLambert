@@ -109,5 +109,5 @@ using namespace rtweekend_math;
     double findPsi(const Vec3& i, const Vec3& e, const Vec3& n) {
         auto projected_i = i - (Dot(i, n) / (i.LengthSquared())) * n;
         auto projected_e = i - (Dot(e, n) / (e.LengthSquared())) * n;
-        return acos(Dot(projected_e / projected_e.Length(), projected_i / projected_i.Length()));
+        return acos(Dot(UnitVector(projected_e), UnitVector(projected_i)));
     }

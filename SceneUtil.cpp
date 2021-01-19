@@ -244,7 +244,7 @@ HittableList MoonScene() {
     HittableList world;
 
     auto moon_texture = make_shared<ImageTexture>("img\\moon.jpg");
-    auto moon_surface = make_shared<Hapke>(moon_texture, .3);
+    auto moon_surface = make_shared<Hapke>(moon_texture, 1);
     auto moon = make_shared<Sphere>(Point3(0, 0, 0), 1.75, moon_surface);
     world.add(moon);
 

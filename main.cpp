@@ -17,6 +17,7 @@
 #include "ImageTexture.h"
 #include "CheckerTexture.h"
 #include "NoiseTexture.h"
+#include "math.h"
 
 using namespace rtweekend_math;
 
@@ -103,7 +104,7 @@ int main() {
         world = MoonScene();
         kAspectRatio = 2.0;
         lookfrom = Point3(3.25, .5, 10);
-        samplesPerPixel = 500;
+        samplesPerPixel = 50;
         background = Color(0.3, 0.3, 0.3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
@@ -125,6 +126,9 @@ int main() {
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
                 pixel_color += RayColorWithBackground(r, background, world, maxDepth);
+                if (isnan(pixel_color.x())) {
+                    auto panda = 4;
+                }
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }

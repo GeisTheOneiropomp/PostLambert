@@ -72,5 +72,5 @@
 
 	bool Vec3::nearZero() const {
 		const auto threshold = 1e-8;
-		return (fabs(e[0] < threshold) && fabs(e[1] < threshold) && fabs(e[2] < threshold));
+		return (fabs(e[0]) < threshold) && (fabs(e[1]) < threshold) && (fabs(e[2]) < threshold);
 	}
