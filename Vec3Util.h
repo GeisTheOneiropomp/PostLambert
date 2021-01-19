@@ -20,4 +20,4 @@
 	Vec3 RandomInHemisphere(const Vec3& normal);
 	Vec3 Reflect(const Vec3& v, const Vec3& normal);
 	Vec3 Refract(const Vec3& uv, const Vec3 normal, double etai_over_etat);
-
+	double findPsi(const Vec3& i, const Vec3& e, const Vec3& n);

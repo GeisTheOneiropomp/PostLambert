@@ -105,3 +105,9 @@ using namespace rtweekend_math;
         Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * normal;
         return r_out_perp + r_out_parallel;
     }
+
+    double findPsi(const Vec3& i, const Vec3& e, const Vec3& n) {
+        auto projected_i = i - (Dot(i, n) / (i.LengthSquared())) * n;
+        auto projected_e = i - (Dot(e, n) / (e.LengthSquared())) * n;
+        return acos(Dot(projected_e / projected_e.Length(), projected_i / projected_i.Length()));
+    }

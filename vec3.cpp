@@ -60,12 +60,12 @@
 		return *this *= 1 / t;
 	}
 
-	double Vec3::Length()
+	double Vec3::Length() const
 	{
 		return std::sqrt(LengthSquared());
 	}
 
-	double Vec3::LengthSquared()
+	 double Vec3::LengthSquared() const
 	{
 		return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
 	}

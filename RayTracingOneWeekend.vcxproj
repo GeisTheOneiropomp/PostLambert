@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -148,6 +148,7 @@
     <ClCompile Include="ConstantMedium.cpp" />
     <ClCompile Include="Dielectric.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
+    <ClCompile Include="Hapke.cpp" />
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="ImageTexture.cpp" />
     <ClCompile Include="ImproperLambert.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="MovingSphere.cpp" />
     <ClCompile Include="NoiseTexture.cpp" />
     <ClCompile Include="Perlin.cpp" />
+    <ClCompile Include="PhaseFunctionsUtils.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayColorUtil.cpp" />
     <ClCompile Include="SceneUtil.cpp" />
@@ -184,6 +186,7 @@
     <ClInclude Include="ConstantMedium.h" />
     <ClInclude Include="Dielectric.h" />
     <ClInclude Include="DiffuseLight.h" />
+    <ClInclude Include="Hapke.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
     <ClInclude Include="ImageTexture.h" />
@@ -198,6 +201,7 @@
     <ClInclude Include="MovingSphere.h" />
     <ClInclude Include="NoiseTexture.h" />
     <ClInclude Include="Perlin.h" />
+    <ClInclude Include="PhaseFunctionsUtils.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayColorUtil.h" />
     <ClInclude Include="resource.h" />

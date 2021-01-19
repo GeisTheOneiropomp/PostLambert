@@ -16,8 +16,8 @@
 		Vec3& operator+= (const Vec3 v);
 		Vec3& operator*= (const double t);
 		Vec3& operator/= (const double t);
-		double Length();
-		double LengthSquared();
+		double Length() const;
+		double LengthSquared() const;
 		bool nearZero() const;
 
 	public:
