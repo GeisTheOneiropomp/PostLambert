@@ -18,7 +18,7 @@
 		Vec3& operator/= (const double t);
 		double Length() const;
 		double LengthSquared() const;
-		bool nearZero() const;
+		bool isNearZero() const;
 
 	public:
 		double e[3];

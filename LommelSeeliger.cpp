@@ -17,7 +17,7 @@ bool LommelSeeliger::scatter(const Ray& r_in, const HitRecord& record, Color& at
 {
     auto scatter_direction = record.normal + RandomUnitVector();
 
-    if (scatter_direction.nearZero())
+    if (scatter_direction.isNearZero())
         scatter_direction = record.normal;
 
     auto mu = Dot(record.normal, UnitVector(-1 * r_in.direction()));

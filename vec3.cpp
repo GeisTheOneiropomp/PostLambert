@@ -70,7 +70,7 @@
 		return (e[0] * e[0]) + (e[1] * e[1]) + (e[2] * e[2]);
 	}
 
-	bool Vec3::nearZero() const {
+	bool Vec3::isNearZero() const {
 		const auto threshold = 1e-8;
 		return (fabs(e[0]) < threshold) && (fabs(e[1]) < threshold) && (fabs(e[2]) < threshold);
 	}

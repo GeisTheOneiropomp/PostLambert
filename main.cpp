@@ -27,7 +27,7 @@ int main() {
     auto kAspectRatio = 16.0 / 9.0;
     int kImageWidth = 1600;
     int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    int samplesPerPixel = 10;
+    int samplesPerPixel = 800;
     int maxDepth = 30;
 
     //world
@@ -37,12 +37,13 @@ int main() {
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);
     Vec3 vup(0, 1, 0);
-    auto dist_to_focus = 10;
+    auto distToFocus = 10;
     auto aperture = 0.0;
     double fieldOfView = 40;
     Color background(0, 0, 0);
 
     switch (0) {
+    default:
     case 1:
         world = RandomScene();
         lookfrom = Point3(13, 2, 3);
@@ -99,12 +100,11 @@ int main() {
         lookat = Point3(278, 278, 0);
         fieldOfView = 40.0;
         break; 
-    default:
     case 8:
         world = MoonScene();
         kAspectRatio = 2.0;
         lookfrom = Point3(3.25, .5, 10);
-        samplesPerPixel = 50;
+        samplesPerPixel = 2000;
         background = Color(0.3, 0.3, 0.3);
         lookat = Point3(0, 0, 0);
         fieldOfView = 20.0;
@@ -112,7 +112,7 @@ int main() {
         break;
     }
 
-    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, dist_to_focus, 0.0, 1.0);
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
@@ -126,9 +126,6 @@ int main() {
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
                 pixel_color += RayColorWithBackground(r, background, world, maxDepth);
-                if (isnan(pixel_color.x())) {
-                    auto panda = 4;
-                }
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }

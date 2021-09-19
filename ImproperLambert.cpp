@@ -9,7 +9,7 @@ ImproperLambert::ImproperLambert(const Color& a) : albedo(a)
 bool ImproperLambert::scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const
 {
     auto scatter_direction = record.normal + RandomUnitVector();
-    if (scatter_direction.nearZero())
+    if (scatter_direction.isNearZero())
         scatter_direction = record.normal;
 
     scattered = Ray(record.point, scatter_direction, r_in.time());
