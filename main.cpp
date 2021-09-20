@@ -127,7 +127,7 @@ int main() {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
-                pixel_color += RayColorWithBackground(r, background, world, maxDepth);
+                pixel_color += cam.vignetteFactor(u,v) * RayColorWithBackground(r, background, world, maxDepth);
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }

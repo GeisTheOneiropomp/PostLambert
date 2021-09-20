@@ -12,9 +12,11 @@ public:
         double time0, double time1, double tilt, double shift);
 
     Ray getRay(double u, double v) const;
+    double vignetteFactor(double s, double t) const;
 
 private:
     Point3 origin;
+    Point3 lensCenter;
     Point3 lowerLeftCorner;
     Vec3 horizontal;
     Vec3 vertical;

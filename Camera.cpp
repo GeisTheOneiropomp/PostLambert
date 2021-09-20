@@ -1,5 +1,5 @@
 #include "Camera.h"
-
+#include <math.h>
 using namespace rtweekend_math;
 
 Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldOfView,
@@ -16,12 +16,13 @@ Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldO
     v = Cross(w, u);
 
     origin = lookFrom;
+    lensCenter = lookAt;
     horizontal = focusDistance * viewportWidth * u;
     vertical = focusDistance * viewportHeight * v;
     lowerLeftCorner = origin - horizontal / 2 - vertical / 2 - focusDistance*w;
     lensRadius = aperture / 2;
     this->time0 = time0;
-    this->time1 = time1; // TODO: Refactor?
+    this->time1 = time1; 
     this->tilt = tilt;
     this->shift = shift;
 }
@@ -33,4 +34,11 @@ Ray Camera::getRay(double s, double t) const
     return Ray(origin + offset, 
         lowerLeftCorner + (s * (horizontal + Vec3(shift, shift, shift))) + (t * vertical + Vec3(tilt, tilt, tilt)) - origin - offset, 
         RandomDouble(time0, time1));
+}
+
+double Camera::vignetteFactor(double s, double t) const {
+    Vec3 opticalAxis = lensCenter - origin;
+    Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(shift, shift, shift)) + (t * (vertical + Vec3(tilt, tilt, tilt)))));
+    auto returnThis = pow(CosAngle(opticalAxis, chiefRay), 4);
+    return pow(CosAngle(opticalAxis, chiefRay), 4);
 }

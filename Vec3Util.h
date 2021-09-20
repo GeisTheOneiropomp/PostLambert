@@ -9,6 +9,7 @@
 	Vec3 operator/(const Vec3 u, double t);
 	Vec3 operator* (const double t, const Vec3& v);
 	double Dot(const Vec3& u, const Vec3& v);
+	double CosAngle(const Vec3& u, const Vec3& v);
 	Vec3 Cross(const Vec3& u, const Vec3& v);
 	Vec3 UnitVector(Vec3 u);
 	Vec3 operator* (const Vec3 u, const double t);

@@ -45,6 +45,11 @@ using namespace rtweekend_math;
             u.e[2] * v.e[2];
     }
 
+    double CosAngle(const Vec3& u, const Vec3& v)
+    {
+        return Dot(u,v)/(u.Length()*v.Length());
+    }
+
     Vec3 Cross(const Vec3& u, const Vec3& v)
     {
         return Vec3(
