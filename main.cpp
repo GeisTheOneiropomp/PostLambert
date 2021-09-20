@@ -40,6 +40,8 @@ int main() {
     auto distToFocus = 10;
     auto aperture = 0.0;
     double fieldOfView = 40;
+    double tilt = 1;
+    double shift = 0;
     Color background(0, 0, 0);
 
     switch (0) {
@@ -112,7 +114,7 @@ int main() {
         break;
     }
 
-    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0);
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt, shift);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
