@@ -1,17 +1,19 @@
 #include "ImageTexture.h"
 #include "rtw_stb_image.h"
+#include <string>
+using std::string;
 
 ImageTexture::ImageTexture() : data(nullptr), width(0), height(0), bytes_per_scanline(0)
 {
 }
 
-ImageTexture::ImageTexture(const char* filename)
+ImageTexture::ImageTexture(string filename)
 {
         auto components_per_pixel = bytes_per_pixel;
         width = 0;
         height = 0;
         data = stbi_load(
-            filename, &width, &height, &components_per_pixel, components_per_pixel);
+            filename.c_str(), &width, &height, &components_per_pixel, components_per_pixel);
 
         if (!data) {
             std::cerr << "ERROR: Could not load texture image file '" << filename << "'.\n";

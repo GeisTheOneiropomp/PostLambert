@@ -3,13 +3,14 @@
 #include <algorithm>
 #include <iostream>
 #include "RTWeekendUtil.h"
+using std::string;
 class ImageTexture : public Texture
 {
 public:
     const static int bytes_per_pixel = 3;
 
     ImageTexture();
-    ImageTexture(const char* filename);
+    ImageTexture(string filename);
     ~ImageTexture();
 
     virtual Color value(double u, double v, const Vec3& p) const override;

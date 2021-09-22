@@ -166,6 +166,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayColorUtil.cpp" />
     <ClCompile Include="SceneUtil.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SolidColor.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Translate.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="RTWeekendUtil.h" />
     <ClInclude Include="rtw_stb_image.h" />
     <ClInclude Include="SceneUtil.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="SolidColor.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Texture.h" />

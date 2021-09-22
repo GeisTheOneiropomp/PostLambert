@@ -32,13 +32,14 @@ Ray Camera::getRay(double s, double t) const
     Vec3 rd = lensRadius * RandomInUnitDisk();
     Vec3 offset = u * rd.x() + v * rd.y();
     return Ray(origin + offset, 
-        lowerLeftCorner + (s * (horizontal + Vec3(shift, shift, shift))) + (t * vertical + Vec3(tilt, tilt, tilt)) - origin - offset, 
+        lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset, 
         RandomDouble(time0, time1));
 }
 
+
 double Camera::vignetteFactor(double s, double t) const {
     Vec3 opticalAxis = lensCenter - origin;
-    Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(shift, shift, shift)) + (t * (vertical + Vec3(tilt, tilt, tilt)))));
+    Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0)) + (t * (vertical + Vec3(0, tilt, 0)))));
     auto returnThis = pow(CosAngle(opticalAxis, chiefRay), 4);
     return pow(CosAngle(opticalAxis, chiefRay), 4);
 }

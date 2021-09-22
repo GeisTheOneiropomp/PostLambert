@@ -18,6 +18,7 @@
 #include "CheckerTexture.h"
 #include "NoiseTexture.h"
 #include "math.h"
+#include "Skybox.h"
 
 using namespace rtweekend_math;
 
@@ -27,13 +28,14 @@ int main() {
     auto kAspectRatio = 16.0 / 9.0;
     int kImageWidth = 1600;
     int kImageHeight = static_cast<int> (kImageWidth / kAspectRatio);
-    int samplesPerPixel = 800;
+    int samplesPerPixel = 100;
     int maxDepth = 30;
 
     //world
     auto R = cos(pi / 4);
 
     auto world = earth();
+    auto skybox = new Skybox("img\\skyboxes\\tsuruta\\");
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);
     Vec3 vup(0, 1, 0);
@@ -41,17 +43,19 @@ int main() {
     auto aperture = 0.0;
     double fieldOfView = 40;
     double tilt = 1;
-    double shift = 0;
+    double shift = 1;
     Color background(0, 0, 0);
 
     switch (0) {
     default:
     case 1:
-        world = RandomScene();
+        world = RandomScene();    
+        samplesPerPixel = 200;
+
         lookfrom = Point3(13, 2, 3);
         background = Color(0.70, 0.80, 1.00);
         lookat = Point3(0, 0, 0);
-        fieldOfView = 20.0;
+        fieldOfView = 60;
         aperture = 0.1;
         break;
     case 2:
@@ -127,7 +131,7 @@ int main() {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
                 Ray r = cam.getRay(u, v);
-                pixel_color += cam.vignetteFactor(u,v) * RayColorWithBackground(r, background, world, maxDepth);
+                pixel_color += cam.vignetteFactor(u,v) *  RayColorWithBackground(r, skybox, world, maxDepth);
             }
             ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
         }

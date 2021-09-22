@@ -1,5 +1,6 @@
 #include "RayColorUtil.h"
 #include "math.h"
+#include "ImageTexture.h"
 
 Color RayColor(const Ray& ray, const Hittable& world, int depth) {
 
@@ -22,7 +23,7 @@ Color RayColor(const Ray& ray, const Hittable& world, int depth) {
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
 
-Color RayColorWithBackground(const Ray& ray, const Color& background, const Hittable& world, int depth) {
+Color RayColorWithBackground(const Ray& ray, const Skybox* skybox, const Hittable& world, int depth) {
 
     if (depth == 0) {
         return Color(0, 0, 0);
@@ -31,7 +32,7 @@ Color RayColorWithBackground(const Ray& ray, const Color& background, const Hitt
 
     if (!world.Hit(ray, 0.001, rtweekend_math::infinity, record)) 
     {
-        return background;
+        return skybox->getValue(ray.direction());
     }
 
     Ray scattered;
@@ -43,6 +44,6 @@ Color RayColorWithBackground(const Ray& ray, const Color& background, const Hitt
     }
 
 
-    return emitted + attenuation * RayColorWithBackground(scattered, background, world, depth - 1);
+    return emitted + attenuation * RayColorWithBackground(scattered, skybox, world, depth - 1);
 
 }
