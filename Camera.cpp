@@ -6,7 +6,7 @@ using namespace rtweekend_math;
 // aperture 
 Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldOfView,
     double aspectRatio, double aperture, double focusDistance,
-    double time0, double time1, double tilt, double shift) {
+    double time0, double time1, double tilt0, double shift0, double tilt1, double shift1) {
 
     auto theta = DegreesToRadians(verticalFieldOfView);
     auto height = tan(theta/2);
@@ -25,32 +25,41 @@ Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldO
     lensRadius = aperture / 2;
     this->time0 = time0;
     this->time1 = time1; 
-    this->tilt = tilt;
-    this->shift = shift;
+    this->tilt0 = tilt0;
+    this->tilt1 = tilt1;
+    this->shift0 = shift0;
+    this->shift1 = shift1;
 }
 
 Ray Camera::getRay(double s, double t) const
 {
+    auto randomTime = WeightedExponential(RandomDouble(time0, time1), 5);
+    auto randomTilt = interpolateTilt(randomTime);
+    auto randomShift = interpolateShift(randomTime);
     Vec3 rd = lensRadius * RandomInUnitDisk();
     Vec3 offset = u * rd.x() + v * rd.y();
     return Ray(origin + offset, 
-        lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset, 
-        RandomDouble(time0, time1));
+        lowerLeftCorner + (s * (horizontal + Vec3(randomShift, 0, 0))) + (t * vertical + Vec3(0, randomTilt, 0)) - origin - offset,
+        randomTime);
 }
 
 MonochromaticRay Camera::getDiffractionRay(double s, double t, double wavelength) const {
+
+    auto randomTime = WeightedExponential(RandomDouble(time0, time1), 5);
+    auto randomTilt = interpolateTilt(randomTime);
+    auto randomShift = interpolateShift(randomTime);
     Vec3 rd = lensRadius * RandomOnUnitDesk();
     Vec3 offset = u * rd.x() + v * rd.y();
 
     Vec3 actualOrgin = origin + offset;
     Vec3 opticalAxis = lensCenter - origin;
-    Vec3 rayDirection = lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset;
+    Vec3 rayDirection = lowerLeftCorner + (s * (horizontal + Vec3(randomShift, 0, 0))) + (t * vertical + Vec3(0, randomTilt, 0)) - origin - offset;
     Vec3 chiefRay = -rayDirection;
 
     double intensity = getDiffractionIntensity(Angle(opticalAxis, chiefRay), wavelength);
     return MonochromaticRay(origin + offset,
-        lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset,
-        RandomDouble(time0, time1), wavelength, intensity);
+        lowerLeftCorner + (s * (horizontal + Vec3(randomShift, 0, 0))) + (t * vertical + Vec3(0, randomTilt, 0)) - origin - offset,
+      randomTime, wavelength, intensity);
 
 }
 
@@ -66,7 +75,27 @@ double Camera::getDiffractionIntensity(double theta, double wavelength) const {
 }
 
 double Camera::vignetteFactor(double s, double t) const {
+
+    auto randomTime = WeightedExponential(RandomDouble(time0, time1), 5);
+    auto randomTilt = interpolateTilt(randomTime);
+    auto randomShift = interpolateShift(randomTime);
+
     Vec3 opticalAxis = lensCenter - origin;
-    Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0)) + (t * (vertical + Vec3(0, tilt, 0)))));
+    Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(randomShift, 0, 0)) + (t * (vertical + Vec3(0, randomTilt, 0)))));
     return pow(CosAngle(opticalAxis, chiefRay), 4);
+}
+
+double Camera::interpolateTilt(double randomVar) const {
+   
+    auto tiltDiff = tilt1 - tilt0;
+    auto timeFactor = randomVar * (time1 - time0);
+    return tilt0 + timeFactor* tiltDiff;
+
+}
+
+double Camera::interpolateShift(double randomVar) const {
+
+    auto tiltDiff = shift1 - shift0;
+    auto timeFactor = randomVar * (time1 - time0);
+    return shift0 + timeFactor * tiltDiff;
 }

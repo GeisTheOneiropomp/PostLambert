@@ -42,8 +42,10 @@ int main() {
     auto distToFocus = 10;
     auto aperture = 0.0;
     double fieldOfView = 40;
-    double tilt = 1;
-    double shift = 1;
+    double tilt0 = 0;
+    double shift0 = 0;
+    double tilt1 = 1;
+    double shift1 = 1;
     Color background(0, 0, 0);
 
     switch (0) {
@@ -117,7 +119,7 @@ int main() {
         break;
     }
 
-    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt, shift);
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt0, shift0, shift1, tilt1);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
@@ -130,13 +132,13 @@ int main() {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
 
-                if (RandomDouble(0, 1) < 1.00) {
+                if (RandomDouble(0, 1) < .9) {
                     Ray r = cam.getRay(u, v);
-                    normal_pixel_color += RayColorWithBackground(r, skybox, world, maxDepth);
+                    normal_pixel_color += cam.vignetteFactor(u,v)* RayColorWithBackground(r, skybox, world, maxDepth);
                 }
                 else {
                     MonochromaticRay mr = cam.getDiffractionRay(u, v, RandomDouble(380.00, 750.00));
-                    auto val = DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
+                    auto val = cam.vignetteFactor(u,v) * DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
                     normal_pixel_color += val;
                 }
             }

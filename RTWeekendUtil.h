@@ -34,6 +34,18 @@ namespace rtweekend_math {
         return min + (max - min) * RandomDouble();
     }
 
+    inline double WeightedLinearDouble(double sample) {
+        return sqrt(sample);
+    }
+
+    inline double WeightedCubicDouble(double sample) {
+        return pow(sample, 3);
+    }
+
+    inline double WeightedExponential(double sample, int power) {
+        return pow(sample, power);
+    }
+
     inline int RandomInt(int min, int max) {
         return static_cast<int>(RandomDouble(min, max + 1));
     }
