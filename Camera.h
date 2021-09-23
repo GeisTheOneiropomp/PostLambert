@@ -3,6 +3,8 @@
 #include "vec3.h"
 #include "Vec3Util.h"
 #include "Ray.h"
+#include "MonochromaticRay.h"
+
 using namespace Vector3Namespace;
 class Camera
 {
@@ -12,6 +14,7 @@ public:
         double time0, double time1, double tilt, double shift);
 
     Ray getRay(double u, double v) const;
+    MonochromaticRay getDiffractionRay(double s, double t, double wavelength) const;
     double vignetteFactor(double s, double t) const;
 
 private:
@@ -24,6 +27,8 @@ private:
     double lensRadius;
     double time0, time1;
     double tilt, shift;
+
+    double getDiffractionIntensity(double theta, double waveLength) const;
 
 };
 

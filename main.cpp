@@ -50,13 +50,12 @@ int main() {
     default:
     case 1:
         world = RandomScene();    
-        samplesPerPixel = 200;
-
+        samplesPerPixel = 100;
         lookfrom = Point3(13, 2, 3);
         background = Color(0.70, 0.80, 1.00);
         lookat = Point3(0, 0, 0);
         fieldOfView = 60;
-        aperture = 0.1;
+        //aperture = 0.1;
         break;
     case 2:
         world = two_spheres();
@@ -126,14 +125,23 @@ int main() {
     for (int j = kImageHeight - 1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < kImageWidth; ++i) {
-            Color pixel_color(0, 0, 0);
+            Color normal_pixel_color(0, 0, 0);
             for (int s = 0; s < samplesPerPixel; ++s) {
                 auto u = (i + RandomDouble()) / (kImageWidth - 1);
                 auto v = (j + RandomDouble()) / (kImageHeight - 1);
-                Ray r = cam.getRay(u, v);
-                pixel_color += cam.vignetteFactor(u,v) *  RayColorWithBackground(r, skybox, world, maxDepth);
+
+                if (RandomDouble(0, 1) < 1.00) {
+                    Ray r = cam.getRay(u, v);
+                    normal_pixel_color += RayColorWithBackground(r, skybox, world, maxDepth);
+                }
+                else {
+                    MonochromaticRay mr = cam.getDiffractionRay(u, v, RandomDouble(380.00, 750.00));
+                    auto val = DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
+                    normal_pixel_color += val;
+                }
             }
-            ColorUtil::WriteColor(std::cout, pixel_color, samplesPerPixel);
+            
+            ColorUtil::WriteColor(std::cout, normal_pixel_color, samplesPerPixel);
         }
     }
     std::cerr << "\nDone.\n";

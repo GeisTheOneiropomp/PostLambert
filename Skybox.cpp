@@ -24,6 +24,8 @@ Color Skybox::getValue(const Vec3 vector) const
 	auto u = phi / (2 * pi);
 	auto v = (theta / pi);
 
+	auto texture = texturePointers[0]->value(u, v, unit);
+
 	return texturePointers[0]->value(u, v, unit);
 
 }

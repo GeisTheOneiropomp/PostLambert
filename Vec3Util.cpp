@@ -50,6 +50,10 @@ using namespace rtweekend_math;
         return Dot(u,v)/(u.Length()*v.Length());
     }
 
+    double Angle(const Vec3& u, const Vec3& v) {
+        return acos(Dot(u, v) / (u.Length() * v.Length()));
+    }
+
     Vec3 Cross(const Vec3& u, const Vec3& v)
     {
         return Vec3(
@@ -98,12 +102,25 @@ using namespace rtweekend_math;
         return Vec3(cos(theta) * r, sin(theta) * r, 0);
     }
 
+    Vec3 RandomOnUnitDesk() {
+        auto theta = RandomDouble(0, 2 * pi);
+        return UnitVector((Vec3(cos(theta), sin(theta), 0)));
+    }
+
     Vec3 Reflect(const Vec3& v, const Vec3& normal)
     {
         return v - 2*Dot(v,normal) * normal;
     }
 
     Vec3 Refract(const Vec3& uv, const Vec3 normal, double etai_over_etat)
+    {
+        auto cos_theta = fmin(Dot(-uv, normal), 1.0);
+        Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * normal);
+        Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * normal;
+        return r_out_perp + r_out_parallel;
+    }
+
+    Vec3 Diffract(const Vec3& uv, const Vec3 normal, double etai_over_etat)
     {
         auto cos_theta = fmin(Dot(-uv, normal), 1.0);
         Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * normal);

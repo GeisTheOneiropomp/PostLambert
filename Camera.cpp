@@ -2,6 +2,8 @@
 #include <math.h>
 using namespace rtweekend_math;
 
+//50 mm camera
+// aperture 
 Camera::Camera(Point3 lookFrom, Point3 lookAt, Vec3 upVec, double verticalFieldOfView,
     double aspectRatio, double aperture, double focusDistance,
     double time0, double time1, double tilt, double shift) {
@@ -36,10 +38,35 @@ Ray Camera::getRay(double s, double t) const
         RandomDouble(time0, time1));
 }
 
+MonochromaticRay Camera::getDiffractionRay(double s, double t, double wavelength) const {
+    Vec3 rd = lensRadius * RandomOnUnitDesk();
+    Vec3 offset = u * rd.x() + v * rd.y();
+
+    Vec3 actualOrgin = origin + offset;
+    Vec3 opticalAxis = lensCenter - origin;
+    Vec3 rayDirection = lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset;
+    Vec3 chiefRay = -rayDirection;
+
+    double intensity = getDiffractionIntensity(Angle(opticalAxis, chiefRay), wavelength);
+    return MonochromaticRay(origin + offset,
+        lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0))) + (t * vertical + Vec3(0, tilt, 0)) - origin - offset,
+        RandomDouble(time0, time1), wavelength, intensity);
+
+}
+
+double Camera::getDiffractionIntensity(double theta, double wavelength) const {
+
+    auto unitWavelength = wavelength * (0.000001);
+    auto waveNumber = 2 * pi / unitWavelength;
+    auto beta = (waveNumber * lensRadius / 50 * sin(theta));
+    if (beta == 0.0f) {
+        return 0.0;
+    }
+    return pow((sin(beta)/beta),2);
+}
 
 double Camera::vignetteFactor(double s, double t) const {
     Vec3 opticalAxis = lensCenter - origin;
     Vec3 chiefRay =  lensCenter - (lowerLeftCorner + (s * (horizontal + Vec3(shift, 0, 0)) + (t * (vertical + Vec3(0, tilt, 0)))));
-    auto returnThis = pow(CosAngle(opticalAxis, chiefRay), 4);
     return pow(CosAngle(opticalAxis, chiefRay), 4);
 }

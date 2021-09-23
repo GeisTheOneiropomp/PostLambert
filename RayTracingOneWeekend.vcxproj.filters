@@ -37,12 +37,15 @@
     <Filter Include="Header Files\Textures">
       <UniqueIdentifier>{63a63a36-5f31-4496-82c2-c494e2231464}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rays">
+      <UniqueIdentifier>{252a9686-7e7a-44e3-9484-a4e450afb78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rays">
+      <UniqueIdentifier>{ff7513be-a3b7-4938-8f06-859c766888d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -150,11 +153,14 @@
     <ClCompile Include="Skybox.cpp">
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Source Files\Rays</Filter>
+    </ClCompile>
+    <ClCompile Include="MonochromaticRay.cpp">
+      <Filter>Source Files\Rays</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -266,9 +272,6 @@
     <ClInclude Include="Minnaert.h">
       <Filter>Header Files\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="PhaseFunctionsUtils.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -277,6 +280,18 @@
     </ClInclude>
     <ClInclude Include="Skybox.h">
       <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Diffraction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Header Files\Rays</Filter>
+    </ClInclude>
+    <ClInclude Include="MonochromaticRay.h">
+      <Filter>Header Files\Rays</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
