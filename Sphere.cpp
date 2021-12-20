@@ -1,5 +1,5 @@
 #include "Sphere.h"
-using namespace rtweekend_math;
+using namespace rt_math;
 using namespace Vector3Namespace;
 
 Sphere::Sphere()

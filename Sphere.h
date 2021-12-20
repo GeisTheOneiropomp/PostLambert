@@ -2,7 +2,7 @@
 #include "vec3.h"
 #include "Hittable.h"
 #include "Vec3Util.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 
 class Sphere : public Hittable 
 {

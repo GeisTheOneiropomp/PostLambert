@@ -1,6 +1,6 @@
 #pragma once
 #include "Material.h"
-#include "rtweekendutil.h"
+#include "rtutil.h"
 #include "Vec3Util.h"
 #include "SolidColor.h"
 #include "Texture.h"

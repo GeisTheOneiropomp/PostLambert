@@ -1,8 +1,8 @@
 #include "Perlin.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 #include "Vec3Util.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 Perlin::Perlin()
 {

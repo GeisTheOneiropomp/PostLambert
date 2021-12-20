@@ -1,6 +1,6 @@
 #pragma once
 #include "Material.h"
-#include "RTWeekendUtil.h"
+#include "rtutil.h"
 class Dielectric :
     public Material
 {

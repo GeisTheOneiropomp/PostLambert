@@ -1,6 +1,6 @@
 #include "ColorUtil.h"
-#include "RTWeekendUtil.h"
-using namespace rtweekend_math;
+#include "rtutil.h"
+using namespace rt_math;
 namespace ColorUtil {
 	void ColorUtil::WriteColor(std::ostream& out, Color pixel_color, int samplesPerPixel)
 	{

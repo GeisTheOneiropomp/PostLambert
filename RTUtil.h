@@ -7,7 +7,7 @@
 
 // Usings
 
-namespace rtweekend_math {
+namespace rt_math {
     using std::shared_ptr;
     using std::make_shared;
     using std::sqrt;

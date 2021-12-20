@@ -24,6 +24,7 @@
     <ProjectGuid>{8c321a6d-3800-4be0-9a0b-0f34da71a60e}</ProjectGuid>
     <RootNamespace>RayTracingOneWeekend</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>RayTracing</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -209,7 +210,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayColorUtil.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="RTWeekendUtil.h" />
+    <ClInclude Include="RTUtil.h" />
     <ClInclude Include="rtw_stb_image.h" />
     <ClInclude Include="SceneUtil.h" />
     <ClInclude Include="Skybox.h" />

@@ -23,7 +23,7 @@
 #include "Minnaert.h"
 #include "Hapke.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 HittableList CornellBox() {
     HittableList objects;
@@ -123,8 +123,8 @@ HittableList RandomScene() {
     srand(time(NULL));
     HittableList world;
 
-    auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
-    world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(checker)));
+    // auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
+    // world.add(make_shared<Sphere>(Point3(0, -1000, 0), 1000, make_shared<Lambertian>(checker)));
 
     //for (int a = -11; a < 11; a++) {
     //    for (int b = -11; b < 11; b++) {

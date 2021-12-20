@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Hittable.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 class MovingSphere : public Hittable
 {
 public:

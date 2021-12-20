@@ -1,6 +1,6 @@
 #include "Camera.h"
 #include <math.h>
-using namespace rtweekend_math;
+using namespace rt_math;
 
 //50 mm camera
 // aperture 

@@ -209,7 +209,7 @@
     <ClInclude Include="RayColorUtil.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="RTWeekendUtil.h">
+    <ClInclude Include="RTUtil.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="SceneUtil.h">

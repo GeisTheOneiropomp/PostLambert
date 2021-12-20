@@ -1,7 +1,7 @@
 #include "YRotate.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 YRotate::YRotate(std::shared_ptr<Hittable> p, double angle) : hittable(p)
 {

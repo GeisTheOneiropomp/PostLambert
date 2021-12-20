@@ -1,7 +1,7 @@
 #include "Vec3Util.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
     std::ostream& operator<<(std::ostream& out, const Vec3& v)
     {

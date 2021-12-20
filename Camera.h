@@ -1,5 +1,5 @@
 #pragma once
-#include "rtweekendutil.h"
+#include "rtutil.h"
 #include "vec3.h"
 #include "Vec3Util.h"
 #include "Ray.h"

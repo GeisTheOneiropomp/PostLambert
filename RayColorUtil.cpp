@@ -11,7 +11,7 @@ Color RayColor(const Ray& ray, const Hittable& world, int depth) {
     }
     HitRecord record;
 
-    if (world.Hit(ray, 0.001, rtweekend_math::infinity, record)) {
+    if (world.Hit(ray, 0.001, rt_math::infinity, record)) {
         Ray scattered;
         Color attenuation;
         if (record.material_pointer->scatter(ray, record, attenuation, scattered)) {
@@ -32,7 +32,7 @@ Color RayColorWithBackground(const Ray& ray, const Skybox* skybox, const Hittabl
     }
     HitRecord record;
 
-    if (!world.Hit(ray, 0.001, rtweekend_math::infinity, record)) 
+    if (!world.Hit(ray, 0.001, rt_math::infinity, record))
     {
         auto direction = ray.direction();
         return skybox->getValue(ray.direction());

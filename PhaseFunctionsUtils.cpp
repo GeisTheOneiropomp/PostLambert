@@ -1,8 +1,8 @@
 #include "PhaseFunctionsUtils.h"
 #include <cmath>
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 double Isotropic()
 {
     return 1.0;

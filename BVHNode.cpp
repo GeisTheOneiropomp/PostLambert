@@ -2,7 +2,7 @@
 #include <iostream>
 #include <functional>
 
-using namespace rtweekend_math;
+using namespace rt_math;
 BVHNode::BVHNode()
 {
 }

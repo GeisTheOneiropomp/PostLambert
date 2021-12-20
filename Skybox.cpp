@@ -1,7 +1,7 @@
 #include "Skybox.h"
-#include "RTWeekendUtil.h"
+#include "RTUtil.h"
 #include "Vec3Util.h"
-using namespace rtweekend_math;
+using namespace rt_math;
 
 Skybox::Skybox()
 {

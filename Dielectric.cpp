@@ -1,7 +1,7 @@
 #include "Dielectric.h"
 #include "Hittable.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 Dielectric::Dielectric(double refractiveIndex) : refractiveIndex(refractiveIndex)
 {

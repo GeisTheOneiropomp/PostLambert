@@ -3,7 +3,7 @@
 #include "Ray.h"
 #include "vec3.h"
 #include "Vec3Util.h"
-#include "rtweekendutil.h"
+#include "rtutil.h"
 
 #include "HittableList.h"
 #include "sphere.h"
@@ -20,7 +20,7 @@
 #include "math.h"
 #include "Skybox.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 int main() {
 

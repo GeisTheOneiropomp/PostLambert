@@ -1,7 +1,7 @@
 #include "ConstantMedium.h"
-#include "RTWeekendUtil.h"
+#include "rtutil.h"
 
-using namespace rtweekend_math;
+using namespace rt_math;
 
 ConstantMedium::ConstantMedium(shared_ptr<Hittable> b, double d, shared_ptr<Texture> texture) 
 	: boundary(b), negative_inverse_density(-1 / d), phase_function(std::make_shared<Isotropic>(texture))
