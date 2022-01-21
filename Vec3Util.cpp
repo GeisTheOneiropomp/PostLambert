@@ -51,6 +51,7 @@ using namespace rt_math;
     }
 
     double Angle(const Vec3& u, const Vec3& v) {
+
         return acos(Dot(u, v) / (u.Length() * v.Length()));
     }
 

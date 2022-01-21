@@ -16,7 +16,7 @@ namespace rt_math {
 
     const double infinity = std::numeric_limits<double>::infinity();
     const double pi = 3.1415926535897932385;
-
+    const int seed = 39;
     // Utility Functions
 
     inline double DegreesToRadians(double degrees) {
@@ -24,9 +24,8 @@ namespace rt_math {
     }
 
     inline double RandomDouble() {
-        static std::random_device rd;  //Will be used to obtain a seed for the random number engine
         static std::uniform_real_distribution<double> distribution(0.0, 1.0);
-        static std::mt19937 generator(rd());
+        static std::mt19937 generator(seed);
         return distribution(generator);
     }
 

@@ -41,11 +41,13 @@ int main() {
     Vec3 vup(0, 1, 0);
     auto distToFocus = 10;
     auto aperture = 0.0;
-    double fieldOfView = 40;
+    double fieldOfView = 100;
     double tilt0 = 0;
     double shift0 = 0;
-    double tilt1 = 1;
-    double shift1 = 1;
+    double tilt1 = 0;
+    double shift1 = 0;
+    double diffractionRatio = 0;
+    bool useVignette = 0;
     Color background(0, 0, 0);
 
     switch (0) {
@@ -53,11 +55,15 @@ int main() {
     case 1:
         world = RandomScene();    
         samplesPerPixel = 100;
-        lookfrom = Point3(13, 2, 3);
+        lookfrom = Point3(3, 2, 3);
         background = Color(0.70, 0.80, 1.00);
         lookat = Point3(0, 0, 0);
-        fieldOfView = 60;
-        //aperture = 0.1;
+        fieldOfView = 100;
+        diffractionRatio = .1;
+        useVignette = 1;
+        aperture = 0.1;
+        tilt1 = 1;
+        shift1 = 1;
         break;
     case 2:
         world = two_spheres();
@@ -119,7 +125,7 @@ int main() {
         break;
     }
 
-    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt0, shift0, shift1, tilt1);
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt0, shift0, tilt1, shift1);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
@@ -129,17 +135,16 @@ int main() {
         for (int i = 0; i < kImageWidth; ++i) {
             Color normal_pixel_color(0, 0, 0);
             for (int s = 0; s < samplesPerPixel; ++s) {
-                auto u = (i + RandomDouble()) / (kImageWidth - 1);
-                auto v = (j + RandomDouble()) / (kImageHeight - 1);
-
-                if (RandomDouble(0, 1) < .9) {
+                auto u = (i + RandomDouble()) /  (double (kImageWidth - 1.0));
+                auto v = (j + RandomDouble()) /  (double (kImageHeight - 1.0));
+                auto vignetteFactor = useVignette ? cam.vignetteFactor(u, v) : 1;
+                if (RandomDouble(0, 1) < 1 - diffractionRatio) {
                     Ray r = cam.getRay(u, v);
-                    normal_pixel_color += cam.vignetteFactor(u,v)* RayColorWithBackground(r, skybox, world, maxDepth);
+                    normal_pixel_color += vignetteFactor * RayColorWithBackground(r, skybox, world, maxDepth);
                 }
                 else {
                     MonochromaticRay mr = cam.getDiffractionRay(u, v, RandomDouble(380.00, 750.00));
-                    auto val = cam.vignetteFactor(u,v) * DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
-                    normal_pixel_color += val;
+                    normal_pixel_color += vignetteFactor * DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
                 }
             }
             
