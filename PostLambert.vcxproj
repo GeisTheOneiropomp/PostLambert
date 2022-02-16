@@ -256,7 +256,7 @@
     <ClInclude Include="RayColorUtil.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RTUtil.h" />
-    <ClInclude Include="rtw_stb_image.h" />
+    <ClInclude Include="pl_stb_image.h" />
     <ClInclude Include="SceneUtil.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SolidColor.h" />

@@ -179,7 +179,7 @@
     <ClInclude Include="SolidColor.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
-    <ClInclude Include="rtw_stb_image.h">
+    <ClInclude Include="pl_stb_image.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
     <ClInclude Include="ImageTexture.h">
