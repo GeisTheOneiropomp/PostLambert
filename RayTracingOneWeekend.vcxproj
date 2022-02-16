@@ -32,7 +32,7 @@
     <ProjectGuid>{8c321a6d-3800-4be0-9a0b-0f34da71a60e}</ProjectGuid>
     <RootNamespace>RayTracingOneWeekend</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>RayTracing</ProjectName>
+    <ProjectName>PostLambert</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -206,13 +206,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AABB.cpp" />
-    <ClCompile Include="Box.cpp" />
-    <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CheckerTexture.cpp" />
     <ClCompile Include="ColorUtil.cpp" />
-    <ClCompile Include="ConstantMedium.cpp" />
     <ClCompile Include="Dielectric.cpp" />
     <ClCompile Include="DiffuseLight.cpp" />
     <ClCompile Include="Hapke.cpp" />
@@ -226,10 +221,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Metal.cpp" />
     <ClCompile Include="Minnaert.cpp" />
-    <ClCompile Include="MonochromaticRay.cpp" />
     <ClCompile Include="MovingSphere.cpp" />
-    <ClCompile Include="NoiseTexture.cpp" />
-    <ClCompile Include="Perlin.cpp" />
     <ClCompile Include="PhaseFunctionsUtils.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayColorUtil.cpp" />
@@ -237,25 +229,15 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SolidColor.cpp" />
     <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="Translate.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="Vec3Util.cpp" />
-    <ClCompile Include="XYRectangle.cpp" />
-    <ClCompile Include="XZRectangle.cpp" />
-    <ClCompile Include="YRotate.cpp" />
-    <ClCompile Include="YZRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
-    <ClInclude Include="Box.h" />
-    <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CheckerTexture.h" />
     <ClInclude Include="ColorUtil.h" />
-    <ClInclude Include="ConstantMedium.h" />
     <ClInclude Include="Dielectric.h" />
-    <ClInclude Include="Diffraction.h" />
     <ClInclude Include="DiffuseLight.h" />
+    <ClInclude Include="FileResources.h" />
     <ClInclude Include="Hapke.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
@@ -268,10 +250,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Metal.h" />
     <ClInclude Include="Minnaert.h" />
-    <ClInclude Include="MonochromaticRay.h" />
     <ClInclude Include="MovingSphere.h" />
-    <ClInclude Include="NoiseTexture.h" />
-    <ClInclude Include="Perlin.h" />
     <ClInclude Include="PhaseFunctionsUtils.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RayColorUtil.h" />
@@ -283,13 +262,8 @@
     <ClInclude Include="SolidColor.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Translate.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec3Util.h" />
-    <ClInclude Include="XYRectangle.h" />
-    <ClInclude Include="XZRectangle.h" />
-    <ClInclude Include="YRotate.h" />
-    <ClInclude Include="YZRectangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RayTracingOneWeekend.rc" />

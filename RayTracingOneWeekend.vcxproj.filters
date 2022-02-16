@@ -78,12 +78,6 @@
     <ClCompile Include="MovingSphere.cpp">
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="BVHNode.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="AABB.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Vec3Util.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
@@ -99,44 +93,14 @@
     <ClCompile Include="SolidColor.cpp">
       <Filter>Source Files\Textures</Filter>
     </ClCompile>
-    <ClCompile Include="CheckerTexture.cpp">
-      <Filter>Source Files\Textures</Filter>
-    </ClCompile>
     <ClCompile Include="ImageTexture.cpp">
-      <Filter>Source Files\Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="Perlin.cpp">
-      <Filter>Source Files\Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="NoiseTexture.cpp">
       <Filter>Source Files\Textures</Filter>
     </ClCompile>
     <ClCompile Include="DiffuseLight.cpp">
       <Filter>Source Files\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="XYRectangle.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="XZRectangle.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="YZRectangle.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Translate.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="YRotate.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Isotropic.cpp">
       <Filter>Source Files\Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstantMedium.cpp">
-      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="LunarLambert.cpp">
       <Filter>Source Files\Materials</Filter>
@@ -154,9 +118,6 @@
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
-      <Filter>Source Files\Rays</Filter>
-    </ClCompile>
-    <ClCompile Include="MonochromaticRay.cpp">
       <Filter>Source Files\Rays</Filter>
     </ClCompile>
   </ItemGroup>
@@ -197,12 +158,6 @@
     <ClInclude Include="HittableList.h">
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="AABB.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="BVHNode.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="ColorUtil.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -224,47 +179,17 @@
     <ClInclude Include="SolidColor.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
-    <ClInclude Include="CheckerTexture.h">
-      <Filter>Header Files\Textures</Filter>
-    </ClInclude>
     <ClInclude Include="rtw_stb_image.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
     <ClInclude Include="ImageTexture.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
-    <ClInclude Include="Perlin.h">
-      <Filter>Header Files\Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseTexture.h">
-      <Filter>Header Files\Textures</Filter>
-    </ClInclude>
     <ClInclude Include="DiffuseLight.h">
       <Filter>Header Files\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="XYRectangle.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="XZRectangle.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="YZRectangle.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Translate.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="YRotate.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="Isotropic.h">
       <Filter>Header Files\Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantMedium.h">
-      <Filter>Header Files\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="LunarLambert.h">
       <Filter>Header Files\Materials</Filter>
@@ -281,17 +206,14 @@
     <ClInclude Include="Skybox.h">
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Diffraction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ray.h">
-      <Filter>Header Files\Rays</Filter>
-    </ClInclude>
-    <ClInclude Include="MonochromaticRay.h">
       <Filter>Header Files\Rays</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileResources.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
