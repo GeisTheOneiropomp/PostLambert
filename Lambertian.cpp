@@ -16,9 +16,7 @@ bool Lambertian::scatter(const Ray& r_in, const HitRecord& record, Color& attenu
 {
     Vec3 unitNormal = UnitVector(record.normal);
     auto scatter_direction = UnitVector(unitNormal + RandomUnitVector());
-    if (scatter_direction.isNearZero())
-        scatter_direction = unitNormal;
-
+    if (scatter_direction.isNearZero()) scatter_direction = unitNormal;
     scattered = Ray(record.point, scatter_direction, r_in.time());
     auto cosine = Dot(record.normal, scatter_direction);
     attenuation = cosine * albedo->value(record.u_coord, record.v_coord, record.point);

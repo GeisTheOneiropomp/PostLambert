@@ -35,7 +35,7 @@ int main() {
     auto R = cos(pi / 4);
 
     auto world = earth();
-    auto skybox = new Skybox("img\\skyboxes\\tsuruta\\");
+    auto skybox = new Skybox("img\\nightsky.jpg");
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);
     Vec3 vup(0, 1, 0);
@@ -51,7 +51,6 @@ int main() {
     Color background(0, 0, 0);
 
     switch (0) {
-    default:
     case 1:
         world = RandomScene();    
         samplesPerPixel = 100;
@@ -114,18 +113,20 @@ int main() {
         fieldOfView = 40.0;
         break; 
     case 8:
-        world = MoonScene();
+    default:
+        vup = Vec3(1, 0, 0);
+        auto moonPlace = Point3(0, -30, 0);
+        world = MoonScene(moonPlace);
         kAspectRatio = 2.0;
-        lookfrom = Point3(3.25, .5, 10);
-        samplesPerPixel = 2000;
-        background = Color(0.3, 0.3, 0.3);
+        lookfrom = Point3(0, 1, .2);
+        samplesPerPixel = 20;
         lookat = Point3(0, 0, 0);
-        fieldOfView = 20.0;
-        aperture = 0.1;
+        fieldOfView = 30.0;
+        aperture = 0.0;
         break;
     }
 
-    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt0, shift0, tilt1, shift1);
+    Camera cam(lookfrom, lookat, vup, fieldOfView, kAspectRatio, aperture, distToFocus, 0.0, 1.0, tilt0, shift0, tilt1, shift1, useVignette);
     // Render
 
     std::cout << "P3\n" << kImageWidth << ' ' << kImageHeight << "\n255\n";
@@ -137,14 +138,13 @@ int main() {
             for (int s = 0; s < samplesPerPixel; ++s) {
                 auto u = (i + RandomDouble()) /  (double (kImageWidth - 1.0));
                 auto v = (j + RandomDouble()) /  (double (kImageHeight - 1.0));
-                auto vignetteFactor = useVignette ? cam.vignetteFactor(u, v) : 1;
                 if (RandomDouble(0, 1) < 1 - diffractionRatio) {
                     Ray r = cam.getRay(u, v);
-                    normal_pixel_color += vignetteFactor * RayColorWithBackground(r, skybox, world, maxDepth);
+                    normal_pixel_color +=  RayColorWithBackground(r, skybox, world, maxDepth);
                 }
                 else {
                     MonochromaticRay mr = cam.getDiffractionRay(u, v, RandomDouble(380.00, 750.00));
-                    normal_pixel_color += vignetteFactor * DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
+                    normal_pixel_color +=  DiffractionRayColorWithBackground(mr, skybox, world, maxDepth);
                 }
             }
             

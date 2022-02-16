@@ -9,7 +9,7 @@ Skybox::Skybox()
 
 Skybox::Skybox(string input)
 {
-	texturePointers.push_back(make_shared<ImageTexture>(input + "Tsuruta.jpg"));
+	texturePointers.push_back(make_shared<ImageTexture>(input));
 }
 
 Color Skybox::getValue(const Vec3 vector) const
