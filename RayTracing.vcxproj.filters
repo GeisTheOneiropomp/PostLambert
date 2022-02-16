@@ -295,7 +295,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RayTracingOneWeekend.rc">
+    <ResourceCompile Include="RayTracing.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

@@ -16,7 +16,7 @@ Hapke::Hapke(shared_ptr<Texture> a, const double theta) : albedo(a), theta(theta
 
 bool Hapke::scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const
 {
-    // assume scattering is isotropic right now.
+   
     Vec3 unitNormal = UnitVector(record.normal);
     auto scatter_direction = UnitVector(unitNormal + RandomUnitVector());
     if (scatter_direction.isNearZero()) {

@@ -16,10 +16,7 @@ LommelSeeliger::LommelSeeliger(std::shared_ptr<Texture> a) : albedo(a)
 bool LommelSeeliger::scatter(const Ray& r_in, const HitRecord& record, Color& attenuation, Ray& scattered) const
 {
     auto scatter_direction = record.normal + RandomUnitVector();
-
-    if (scatter_direction.isNearZero())
-        scatter_direction = record.normal;
-
+    if (scatter_direction.isNearZero()) scatter_direction = record.normal;
     auto mu = Dot(record.normal, UnitVector(-1 * r_in.direction()));
     auto mu_naught = Dot(record.normal, UnitVector(scatter_direction));
     scattered = Ray(record.point, scatter_direction, r_in.time());
