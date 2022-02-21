@@ -6,6 +6,9 @@ To run the project: download the project, open the Visual Studio Solution, and c
 
 The project comes with several images, they can be swapped out with one's own background images by changing filenames in the Resources.h file. 
 
-For the time being, the parameters of the actual image (such as the dimensions of the output, can be changed in the main.cpp file.
+For the time being, the parameters of the actual image (such as the dimensions of the output), can be changed in the main.cpp file. To view the other reflection models, simply swap out the line 
+	"shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);"
+	with the desired line. Such as:
+	" shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);"
 
 No copyright infringement intended.

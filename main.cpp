@@ -18,6 +18,8 @@
 #include "Skybox.h"
 #include "FileResources.h"
 #include "Hapke.h"
+#include "Minnaert.h"
+#include "LommelSeeliger.h"
 
 using namespace rt_math;
 
@@ -55,14 +57,14 @@ int main() {
     default:
     case 2:
         auto moonTexture = make_shared<ImageTexture>(MOON_FILE);
-        shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
+        // shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
+        shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);
         world = MoonScene(moonMaterial);
         kAspectRatio = 2.0;
-        lookfrom = Point3(0, 1, .2);
-        samplesPerPixel = 20;
+        lookfrom = Point3(14, 0, 0);
+        samplesPerPixel = 100;
         lookat = Point3(0, 0, 0);
         fieldOfView = 30.0;
-        aperture = 0.0;
         break;
     }
 
