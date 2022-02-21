@@ -17,6 +17,7 @@
 #include "math.h"
 #include "Skybox.h"
 #include "FileResources.h"
+#include "Hapke.h"
 
 using namespace rt_math;
 
@@ -32,7 +33,7 @@ int main() {
     //world
     auto R = cos(pi / 4);
 
-    auto skybox = new Skybox(TSURUTA_FILE);
+    auto skybox = new Skybox(NIGHTSKY_FILE);
     Point3 lookfrom(13, 2, 3);
     Point3 lookat(0, 0, 0);
     Vec3 vup(0, 1, 0);
@@ -42,7 +43,6 @@ int main() {
     Color background(0, 0, 0);
     HittableList world;
     switch (0) {
-    default:
     case 1:
         world = RandomScene();    
         samplesPerPixel = 100;
@@ -52,8 +52,11 @@ int main() {
         fieldOfView = 100;
         aperture = 0.1;
         break;
+    default:
     case 2:
-        world = MoonScene(MOON_FILE);
+        auto moonTexture = make_shared<ImageTexture>(MOON_FILE);
+        shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
+        world = MoonScene(moonMaterial);
         kAspectRatio = 2.0;
         lookfrom = Point3(3.25, .5, 10);
         samplesPerPixel = 2000;

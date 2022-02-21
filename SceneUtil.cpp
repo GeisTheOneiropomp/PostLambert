@@ -12,6 +12,7 @@
 #include "LunarLambert.h"
 #include "Minnaert.h"
 #include "Hapke.h"
+#include "Material.h"
 
 using namespace rt_math;
 
@@ -70,11 +71,9 @@ HittableList RandomScene() {
     return world;
 }
 
-HittableList MoonScene(string fileName) {
+HittableList MoonScene(shared_ptr<Material> moonMaterial) {
     HittableList world;
-    auto moon_texture = make_shared<ImageTexture>(fileName);
-    auto moon_surface = make_shared<Hapke>(moon_texture, 1);
-    auto moon = make_shared<Sphere>(Point3(0, 0, 0), 1.75, moon_surface);
+    auto moon = make_shared<Sphere>(Point3(0, 0, 0), 1.75, moonMaterial);
     world.add(moon);
     return world;
 }

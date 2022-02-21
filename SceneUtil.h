@@ -1,6 +1,6 @@
 #pragma once
 #include "HittableList.h"
-#include <string>
+#include "Material.h"
 
 HittableList RandomScene();
-HittableList MoonScene(std::string fileName);
+HittableList MoonScene(shared_ptr<Material> moonMaterial);
