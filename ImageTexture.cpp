@@ -1,5 +1,5 @@
 #include "ImageTexture.h"
-#include "rtw_stb_image.h"
+#include "pl_stb_image.h"
 #include <string>
 using std::string;
 

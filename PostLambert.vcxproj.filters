@@ -217,11 +217,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:PostLambert.vcxproj.filters
     <ResourceCompile Include="PostLambert.rc">
-=======
-    <ResourceCompile Include="RayTracing.rc">
->>>>>>> main:RayTracing.vcxproj.filters
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
