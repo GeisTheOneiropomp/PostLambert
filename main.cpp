@@ -58,12 +58,11 @@ int main() {
         shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
         world = MoonScene(moonMaterial);
         kAspectRatio = 2.0;
-        lookfrom = Point3(3.25, .5, 10);
-        samplesPerPixel = 2000;
-        background = Color(0.3, 0.3, 0.3);
+        lookfrom = Point3(0, 1, .2);
+        samplesPerPixel = 20;
         lookat = Point3(0, 0, 0);
-        fieldOfView = 20.0;
-        aperture = 0.1;
+        fieldOfView = 30.0;
+        aperture = 0.0;
         break;
     }
 
@@ -80,7 +79,7 @@ int main() {
                 auto u = (i + RandomDouble()) /  (double (kImageWidth - 1.0));
                 auto v = (j + RandomDouble()) /  (double (kImageHeight - 1.0));
                     Ray r = cam.getRay(u, v);
-                    normal_pixel_color +=  RayColorWithBackground(r, skybox, world, maxDepth);
+                    normal_pixel_color +=  RayColorWithBackground(r, skybox, world, maxDepth);               
             }
             ColorUtil::WriteColor(std::cout, normal_pixel_color, samplesPerPixel);
         }
