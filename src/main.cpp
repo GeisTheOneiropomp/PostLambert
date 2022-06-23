@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-
 #include "ColorUtil.h"
 #include "Ray.h"
 #include "vec3.h"

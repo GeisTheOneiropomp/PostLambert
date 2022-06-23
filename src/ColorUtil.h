@@ -1,9 +1,8 @@
 #pragma once
 #include "vec3.h"
 #include <iostream>
-#include "../extern/EasyBMP/EasyBMP.h"
-
+#include "vec3.h"
 namespace ColorUtil {
-	void WriteColor(Color pixel_color, int samplesPerPixel, BMP* outputImage, int x, int y);
+	void WriteColor(std::ostream& out, Color pixel_color, int samplesPerPixel);
 }
  
