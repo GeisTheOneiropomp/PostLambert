@@ -14,15 +14,10 @@ Often commonly used in computer graphics, the Lambertian model is an idealizatio
 ## Usage
 
 1. Clone this repository.
-<<<<<<< HEAD
 
-2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors. If you encounter compilations, ensure that the file is encoded in UTF-8 and retry.)
+2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors. If you encounter complications, ensure that the file is encoded in UTF-8 and retry.)
 
 3. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
-=======
-2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors.)
-3. Run from the command line. Note that the output will be a .ppm file. So for example, running 
->>>>>>> 0b9b24d... Readme changes
 
 ```bash
 ./postlambert.exe > "test.ppm"
@@ -30,7 +25,6 @@ Often commonly used in computer graphics, the Lambertian model is an idealizatio
 will generate a file called test.ppm that outputs the ray-traced image.
 
 4. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
-
 
 `FileResources.h`:
 ```c++
@@ -103,6 +97,7 @@ The following section compares post-Lambertian models of the Moon with the stand
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |           Minnaert model. It takes a single parameter n in a generalization of Lambert's Law. By setting n = 1, it reduces to Lambertian scattering.          | 
 
+
 | ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |       Lunar Lambert model. It takes two parameters A and B, which alters the strength of the overall affect.         | 
@@ -122,15 +117,12 @@ It should be noted that even though post-Lambertian scattering models are often 
 | ![Base scene][basescene]     | ![Hapke Scene][hapkescene]  | 
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |  Hapke, but the balls appear radioactive      | 
-<<<<<<< HEAD
 
 PostLambertian models can be used to create a variety of looks. Though not rooted in reality, here are some examples:
 
 | ![Planet 1][planet1]         | ![Planet 3][planet3]        | 
 |:----------------------------:|:---------------------------:|
 | ![Planet 2][planet2]         | ![Planet 4][planet4]        | 
-=======
->>>>>>> 0b9b24d... Readme changes
 
 ## In what situations are post-Lambert materials usable?
       
