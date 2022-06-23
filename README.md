@@ -1,14 +1,103 @@
-# PostLambert
-
 This project implements several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
 
-To run the project: download the project, open the Visual Studio Solution, and compile to "Release" from Visual Studio, and then run from the command line. The format of the output will be .ppm file.  So for example, calling ./postlambert.exe > "test.ppm" will generate the ray traced image into a file named "test.ppm."
+## Digest
 
-The project comes with several images, they can be swapped out with one's own background images by changing filenames in the Resources.h file. 
+Often commonly used in computer graphics, the Lambertian model is an idealization of diffuse scattering. However, the real world almost always features objects in which diffuse scattering is much more complex than thatwhich can be approximated with the Lambertian model. Phenomena such as subsurface scattering, coherent backscattering, retroreflection, are not accounted for; there exist more suitable models that can handle diffuse reflection more accurately.
 
-For the time being, the parameters of the actual image (such as the dimensions of the output), can be changed in the main.cpp file. To view the other reflection models, simply swap out the line 
-	"shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);"
-	with the desired line. Such as:
-	" shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);"
+This program implements models derived from planetary astronomy that have been found to be more accurate in some circumstances. It is perhaps of interest for those seeking to make more visually-realistic materials in the realm of computer graphics.
 
-No copyright infringement intended.
+## Usage
+
+1. Clone this repository
+2. Compile to Release with Visual Studio. (All results here are compiled with MSVC++ 14.21 (Visual Studio 2019 version 16.1))
+3. Run from the command line. Note that the output will be a .ppm file. So for example, running 
+
+```bash
+./postlambert.exe > "test.ppm"
+```
+
+4. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
+
+`FileResources.h`:
+```c++
+#include <string>
+using namespace std;
+#pragma once
+
+const static string MOON_FILE = "extern\\img\\moon.jpg";
+const static string SKYBOX_FILE = "extern\\img\\nightsky.jpg";
+```
+
+5. The default setting is to generate an image of the moon. To change the scene to balls randomly distributed throughout the scene, open the `Config.h` file, and change the variable: 
+
+```c++
+const static SCENEPATH ScenePath = MOON;
+```
+
+with 
+
+```c++
+const static SCENEPATH ScenePath = BALL_SCENE;
+```
+
+Many other parameters related to the camera controls can also be tweaked:
+
+```c++
+const static double AspectRatio = 2.0;
+const static int ImageWidth = 1600;
+const static int ImageHeight = static_cast<int> (ImageWidth / AspectRatio);
+const static int SamplesPerPixel = 100;
+const static int MaxDepth = 30;
+```
+
+To swap out the specified material with reflection models, simply swap open up `main.cpp` and switch the line
+
+```C++
+shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);
+```
+
+with the desired Material:
+
+```C++
+shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
+```
+
+Note that, the number of arguments into the constructor may change. Consult the PDF for explanations on how to tweak the accompanying values.
+
+## Image Gallery
+
+This is an image of the Moon using the standard Lambert lighting model:
+
+![base moon](/OutputGallery/basemoon.png?raw=true "basemoon" width="50%" height="50%" )
+
+The following are images of the Moon using a post-Lambert lighting model:
+
+The Minnaert model:
+![minnaert moon](/OutputGallery/minnaertmoon.png?raw=true "lambertmoon" width="50%" height="50%" )
+
+The Lunar-Lambert Model:
+![lunarlambert moon](/OutputGallery/lunarlambertmoon.png?raw=true "lunarlambertmoon" width="50%" height="50%" )
+
+The Lommel-Seeliger Model:
+![lommelseeliger moon](/OutputGallery/lommelseeligermoon.png?raw=true "lommelseeligermoon" width="50%" height="50%" )
+
+The Hapke Model:
+![hapke moon](/OutputGallery/hapkemoon.png?raw=true "hapkemoon" width="50%" height="50%" )
+
+## In what situations are post-Lambert materials usable?
+    
+  -Astronomical bodies. Given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, this is probably the most applicable situation.
+  -Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
+  -Situations in which diffuse light scattering is not uniform (heterogenous materials, or situations in which thick atmospheres surround the diffuse body)
+  -Situations in which a "glow-effect" is desired, or other glow-like effects that may not be rooted in reality.
+
+Try and see for yourself if these Post-Lambert materials are suitable for your project!
+
+## Should I use PostLambert in my project?
+
+  -Compared to the standard treatment of diffuse reflection, each of the post-Lambertian models take longer to implement and run. But perhaps the benefits of capturing some aspects of subsurface scattering, and other phenomena make it desirable.
+
+## Can you briefly summarize the technical implementation?
+
+  -During most implementations of diffuse scattering in ray tracing, a ray is randomly picked from the unit sphere / unit circle since it is assumed that diffuse light is scattered everywhere equally. The brightness of the ray is attenuated per the Lambert cosine formula. For each post-Lambert material, the brightness of the ray is altered in accordance with the physical law being implemented (e.g., Minnaert's Law, Lommel-Seeliger's law, etc.)
+  -In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.

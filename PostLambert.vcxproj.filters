@@ -215,6 +215,9 @@
     <ClInclude Include="FileResources.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PostLambert.rc">
