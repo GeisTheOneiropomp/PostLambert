@@ -11,14 +11,14 @@ This program implements models derived from planetary astronomy that have been f
 
 ## Usage
 
-1. Clone this repository
-2. Compile to Release with Visual Studio. (All results here are compiled with MSVC++ 14.21 (Visual Studio 2019 version 16.1))
+1. Clone this repository.
+2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters,
 3. Run from the command line. Note that the output will be a .ppm file. So for example, running 
 
 ```bash
 ./postlambert.exe > "test.ppm"
 ```
-
+will generate a file called test.ppm that outputs the ray-traced image.
 4. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
 
 `FileResources.h`:
@@ -101,21 +101,24 @@ It should be noted that even though post-Lambertian scattering models are often 
 
 ## In what situations are post-Lambert materials usable?
     
-  -Astronomical bodies. Given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, this is probably the most applicable situation.
-  -Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
-  -Situations in which diffuse light scattering is not uniform (heterogenous materials, or situations in which thick atmospheres surround the diffuse body)
-  -Situations in which a "glow-effect" is desired, or other desirable effects that may not be rooted in reality.
+  * Astronomical bodies. Given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, this is probably the most applicable situation.
+  
+  * Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
+  
+  * Situations in which diffuse light scattering is not uniform (heterogenous materials, or situations in which thick atmospheres surround the diffuse body).
+  
+  * Situations in which a "glow-effect" is desired, or other desirable effects that may not be rooted in reality.
 
 Try and see for yourself if these Post-Lambert materials are suitable for your project!
 
 ## Should I use PostLambert in my project?
 
-  -Compared to the standard treatment of diffuse reflection, each of the post-Lambertian models take longer to implement and run. But perhaps the benefits of capturing some aspects of subsurface scattering, and other phenomena make it desirable.
+  * Compared to the standard treatment of diffuse reflection, each of the post-Lambertian models take longer to implement and run. But perhaps the benefits of capturing some aspects of subsurface scattering, and other phenomena make it desirable.
 
 ## Can you briefly summarize the technical implementation?
 
-  -During most implementations of diffuse scattering in ray tracing, a ray is randomly picked from the unit sphere / unit circle since it is assumed that diffuse light is scattered everywhere equally. The brightness of the ray is attenuated per the Lambert cosine formula. For each post-Lambert material, the brightness of the ray is altered in accordance with the physical law being implemented (e.g., Minnaert's Law, Lommel-Seeliger's law, etc.)
-  -In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.
+  * During most implementations of diffuse scattering in ray tracing, a ray is randomly picked from the unit sphere / unit circle since it is assumed that diffuse light is scattered everywhere equally. The brightness of the ray is attenuated per the Lambert cosine formula. For each post-Lambert material, the brightness of the ray is altered in accordance with the physical law being implemented (e.g., Minnaert's Law, Lommel-Seeliger's law, etc.)
+  * In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.
 
 [basemoon]:          OutputGallery/base.png
 [minnaertmoon]:          OutputGallery/minnaert.png
