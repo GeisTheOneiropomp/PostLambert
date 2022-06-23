@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 PostLambert: A ray tracer extending the Lambertian model of Diffuse Reflection
 ====================================================================================================
 
@@ -12,6 +13,11 @@ This project implements a ray tracer that simulates several diffuse scattering m
 
 Often commonly used in computer graphics, the Lambertian model is an idealization of diffuse scattering. However, the real world almost always features objects in which diffuse scattering is much more complex than thatwhich can be approximated with the Lambertian model. Phenomena such as subsurface scattering, coherent backscattering, retroreflection, are not accounted for; there exist more suitable models that can handle diffuse reflection more accurately. This program implements models derived from planetary astronomy that have been found to be more accurate in some circumstances. It is perhaps of interest for those seeking to make more visually-realistic materials in the realm of computer graphics.
 =======
+=======
+PostLambert: A ray tracer extending the Lambertian model of Diffuse Reflection
+====================================================================================================
+
+>>>>>>> b1524f5... Minnaert plus read me.
 This project implements several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
 
 ## Digest
@@ -80,30 +86,42 @@ Note that, the number of arguments into the constructor may change. Consult the 
 
 ## Image Gallery
 
-This is an image of the Moon using the standard Lambert lighting model:
+The following section compares post-Lambertian models of the Moon with the standard Lambertian model:
 
-![base moon](/OutputGallery/basemoon.png?raw=true "basemoon" width="50%" height="50%" )
+| ![Base Moon][basemoon]       | ![Minnaert][minnaertmoon]   | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |           Minnaert          | 
 
-The following are images of the Moon using a post-Lambert lighting model:
+| ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |           Lunar Lambert     | 
 
-The Minnaert model:
-![minnaert moon](/OutputGallery/minnaertmoon.png?raw=true "lambertmoon" width="50%" height="50%" )
+| ![Base Moon][basemoon]       | ![Lommel][lommelmoon]       | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |         Lommel-Seeliger     | 
 
-The Lunar-Lambert Model:
-![lunarlambert moon](/OutputGallery/lunarlambertmoon.png?raw=true "lunarlambertmoon" width="50%" height="50%" )
+| ![Base Moon][basemoon]       | ![Minnaert][minnaertmoon]   | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |             Hapke           | 
 
-The Lommel-Seeliger Model:
-![lommelseeliger moon](/OutputGallery/lommelseeligermoon.png?raw=true "lommelseeligermoon" width="50%" height="50%" )
+Using a post-Lambertian material can give a flat-looking diffuse surface depth:
 
-The Hapke Model:
-![hapke moon](/OutputGallery/hapkemoon.png?raw=true "hapkemoon" width="50%" height="50%" )
+| ![Base scene][basescene]     | ![Minnaert][minnaertscene]  | 
+|:----------------------------:|:---------------------------:|
+|          Base Scene          |  Minnaert                   | 
+
+It should be noted that even though post-Lambertian scattering models are often desirable, using them willy-nilly on any diffuse material may not be desirable:
+
+| ![Base scene][basescene]     | ![Hapke Scene][hapkescene]  | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |  Hapke, but radioative      | 
 
 ## In what situations are post-Lambert materials usable?
     
   -Astronomical bodies. Given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, this is probably the most applicable situation.
   -Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
   -Situations in which diffuse light scattering is not uniform (heterogenous materials, or situations in which thick atmospheres surround the diffuse body)
-  -Situations in which a "glow-effect" is desired, or other glow-like effects that may not be rooted in reality.
+  -Situations in which a "glow-effect" is desired, or other desirable effects that may not be rooted in reality.
 
 Try and see for yourself if these Post-Lambert materials are suitable for your project!
 
@@ -272,4 +290,17 @@ Makes use of the EasyBMP library to output BMPs.
 =======
   -During most implementations of diffuse scattering in ray tracing, a ray is randomly picked from the unit sphere / unit circle since it is assumed that diffuse light is scattered everywhere equally. The brightness of the ray is attenuated per the Lambert cosine formula. For each post-Lambert material, the brightness of the ray is altered in accordance with the physical law being implemented (e.g., Minnaert's Law, Lommel-Seeliger's law, etc.)
   -In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.
+<<<<<<< HEAD
 >>>>>>> f7512d0... Resource files changes, and Readme.
+=======
+
+[basemoon]:          OutputGallery/base.png
+[minnaertmoon]:          OutputGallery/minnaert.png
+[lunarlambertmoon]:          OutputGallery/lunarlambert.png
+[lommelmoon]:          OutputGallery/lommelseeliger.png
+[hapkemoon]:          OutputGallery/hapke.png
+
+[basescene]:          OutputGallery/scene.png
+[minnaertscene]:          OutputGallery/minnaertscene.png
+[hapkescene]:          OutputGallery/HapkeScene.png
+>>>>>>> b1524f5... Minnaert plus read me.
