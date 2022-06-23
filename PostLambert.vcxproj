@@ -234,6 +234,7 @@
     <ClCompile Include="src\Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="extern\EasyBMP\EasyBMP.h" />
     <ClInclude Include="extern\EasyBMP\EasyBMP_BMP.h" />
     <ClInclude Include="extern\EasyBMP\EasyBMP_DataStructures.h" />
@@ -270,6 +271,40 @@
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Vec3.h" />
     <ClInclude Include="src\Vec3Util.h" />
+=======
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="ColorUtil.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Dielectric.h" />
+    <ClInclude Include="DiffuseLight.h" />
+    <ClInclude Include="FileResources.h" />
+    <ClInclude Include="Hapke.h" />
+    <ClInclude Include="Hittable.h" />
+    <ClInclude Include="HittableList.h" />
+    <ClInclude Include="ImageTexture.h" />
+    <ClInclude Include="ImproperLambert.h" />
+    <ClInclude Include="Isotropic.h" />
+    <ClInclude Include="Lambertian.h" />
+    <ClInclude Include="LommelSeeliger.h" />
+    <ClInclude Include="LunarLambert.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Metal.h" />
+    <ClInclude Include="Minnaert.h" />
+    <ClInclude Include="MovingSphere.h" />
+    <ClInclude Include="PhaseFunctionsUtils.h" />
+    <ClInclude Include="Ray.h" />
+    <ClInclude Include="RayColorUtil.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RTUtil.h" />
+    <ClInclude Include="pl_stb_image.h" />
+    <ClInclude Include="SceneUtil.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SolidColor.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Vec3Util.h" />
+>>>>>>> f7512d0... Resource files changes, and Readme.
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PostLambert.rc" />
