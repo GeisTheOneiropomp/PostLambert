@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+
 #include "ColorUtil.h"
 #include "Ray.h"
 #include "vec3.h"
@@ -62,7 +64,10 @@ int main() {
     Camera cam(lookfrom, lookat, vup, fieldOfView, AspectRatio, aperture, distToFocus);
     // Render
 
-    std::cout << "P3\n" << ImageWidth << ' ' << ImageHeight << "\n255\n";
+    std::ofstream outfile;
+    outfile.open(OUTPUT);
+
+    outfile << "P3\n" << ImageWidth << ' ' << ImageHeight << "\n255\n";
 
     for (int j = ImageHeight - 1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
@@ -74,7 +79,7 @@ int main() {
                     Ray r = cam.getRay(u, v);
                     normal_pixel_color +=  RayColorWithBackground(r, skybox, world, MaxDepth);               
             }
-            ColorUtil::WriteColor(std::cout, normal_pixel_color, SamplesPerPixel);
+            ColorUtil::WriteColor(outfile, normal_pixel_color, SamplesPerPixel);
         }
     }
     std::cerr << "\nDone.\n";

@@ -3,6 +3,10 @@ PostLambert: A ray tracer extending the Lambertian model of Diffuse Reflection
 
 This project implements several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
 
+| ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
+|:----------------------------:|:---------------------------:|
+|          Standard Lambertian Diffuse Reflection           |      The Lunar-Lambert model of Diffuse Reflection, which accurately captures the glow of the Moon due to the presence of multiple scattering centers in the material that comprises the Moon.         | 
+
 ## Digest
 
 Often commonly used in computer graphics, the Lambertian model is an idealization of diffuse scattering. However, the real world almost always features objects in which diffuse scattering is much more complex than thatwhich can be approximated with the Lambertian model. Phenomena such as subsurface scattering, coherent backscattering, retroreflection, are not accounted for; there exist more suitable models that can handle diffuse reflection more accurately.
@@ -12,14 +16,18 @@ This program implements models derived from planetary astronomy that have been f
 ## Usage
 
 1. Clone this repository.
-2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters,
+
+2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors.)
+
 3. Run from the command line. Note that the output will be a .ppm file. So for example, running 
 
 ```bash
 ./postlambert.exe > "test.ppm"
 ```
 will generate a file called test.ppm that outputs the ray-traced image.
+
 4. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
+
 
 `FileResources.h`:
 ```c++
@@ -33,18 +41,21 @@ const static string SKYBOX_FILE = "extern\\img\\nightsky.jpg";
 
 5. The default setting is to generate an image of the moon. To change the scene to balls randomly distributed throughout the scene, open the `Config.h` file, and change the variable: 
 
+`Config.h`:
 ```c++
 const static SCENEPATH ScenePath = MOON;
 ```
 
 with 
 
+`Config.h`:
 ```c++
 const static SCENEPATH ScenePath = BALL_SCENE;
 ```
 
 Many other parameters related to the camera controls can also be tweaked:
 
+`Config.h`:
 ```c++
 const static double AspectRatio = 2.0;
 const static int ImageWidth = 1600;
@@ -55,12 +66,14 @@ const static int MaxDepth = 30;
 
 To swap out the specified material with reflection models, simply swap open up `main.cpp` and switch the line
 
+`main.cpp`:
 ```C++
 shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);
 ```
 
 with the desired Material:
 
+`main.cpp`:
 ```C++
 shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
 ```
@@ -77,7 +90,7 @@ The following section compares post-Lambertian models of the Moon with the stand
 
 | ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
 |:----------------------------:|:---------------------------:|
-|          Base Moon           |           Lunar Lambert     | 
+|          Base Moon           |       Lunar Lambert         | 
 
 | ![Base Moon][basemoon]       | ![Lommel][lommelmoon]       | 
 |:----------------------------:|:---------------------------:|
@@ -91,13 +104,13 @@ Using a post-Lambertian material can give a flat-looking diffuse surface depth:
 
 | ![Base scene][basescene]     | ![Minnaert][minnaertscene]  | 
 |:----------------------------:|:---------------------------:|
-|          Base Scene          |  Minnaert                   | 
+|          Base Scene          |  Minnaert -- applied only to the diffuse (non-glass, non-metallic) balls.                   | 
 
 It should be noted that even though post-Lambertian scattering models are often desirable, using them willy-nilly on any diffuse material may not be desirable:
 
 | ![Base scene][basescene]     | ![Hapke Scene][hapkescene]  | 
 |:----------------------------:|:---------------------------:|
-|          Base Moon           |  Hapke, but radioative      | 
+|          Base Moon           |  Hapke, but the balls appear radioactive      | 
 
 ## In what situations are post-Lambert materials usable?
     
