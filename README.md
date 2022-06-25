@@ -97,7 +97,6 @@ The following section compares post-Lambertian models of the Moon with the stand
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |           Minnaert model. It takes a single parameter n in a generalization of Lambert's Law. By setting n = 1, it reduces to Lambertian scattering.          | 
 
-
 | ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |       Lunar Lambert model. It takes two parameters A and B, which alters the strength of the overall affect.         | 
@@ -143,6 +142,7 @@ Try and see for yourself if these Post-Lambert materials are suitable for your p
 ## Can you briefly summarize the technical implementation?
 
   * During most implementations of diffuse scattering in ray tracing, a ray is randomly picked from the unit sphere / unit circle since it is assumed that diffuse light is scattered everywhere equally. The brightness of the ray is attenuated per the Lambert cosine formula. For each post-Lambert material, the brightness of the ray is altered in accordance with the physical law being implemented (e.g., Minnaert's Law, Lommel-Seeliger's law, etc.)
+  
   * In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.
 
 [basemoon]:          OutputGallery/base.png

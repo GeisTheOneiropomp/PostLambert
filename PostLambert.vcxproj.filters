@@ -219,12 +219,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\FileResources.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Config.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="extern\EasyBMP\EasyBMP.h">
       <Filter>EasyBMP</Filter>
     </ClInclude>
@@ -236,10 +230,9 @@
     </ClInclude>
     <ClInclude Include="extern\EasyBMP\EasyBMP_VariousBMPutilities.h">
       <Filter>EasyBMP</Filter>
-=======
-    <ClInclude Include="Config.h">
       <Filter>Resource Files</Filter>
->>>>>>> f7512d0... Resource files changes, and Readme.
+    </ClInclude>
+    <ClInclude Include="src\Config.h">
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
