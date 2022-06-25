@@ -53,7 +53,7 @@ int main() {
     default:
     case SCENEPATH::MOON :
         auto moonTexture = make_shared<ImageTexture>(MOON_FILE);
-        shared_ptr<Material> moonMaterial = make_shared<LunarLambert>(moonTexture, .3, .7);
+        shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, .5);
         world = MoonScene(moonMaterial);
         lookfrom = Point3(7, 0, 0);
         lookat = Point3(0, 0, 0);
