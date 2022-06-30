@@ -234,6 +234,18 @@
     </ClInclude>
     <ClInclude Include="src\Config.h">
     </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_BMP.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_DataStructures.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_VariousBMPutilities.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PostLambert.rc">

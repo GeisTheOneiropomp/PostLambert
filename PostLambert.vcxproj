@@ -206,6 +206,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="extern\EasyBMP\EasyBMP.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\ColorUtil.cpp" />
+    <ClCompile Include="src\Dielectric.cpp" />
+    <ClCompile Include="src\DiffuseLight.cpp" />
+    <ClCompile Include="src\Hapke.cpp" />
+    <ClCompile Include="src\HittableList.cpp" />
+    <ClCompile Include="src\ImageTexture.cpp" />
+    <ClCompile Include="src\ImproperLambert.cpp" />
+    <ClCompile Include="src\Isotropic.cpp" />
+    <ClCompile Include="src\Lambertian.cpp" />
+    <ClCompile Include="src\LommelSeeliger.cpp" />
+    <ClCompile Include="src\LunarLambert.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Metal.cpp" />
+    <ClCompile Include="src\Minnaert.cpp" />
+    <ClCompile Include="src\MovingSphere.cpp" />
+    <ClCompile Include="src\PhaseFunctionsUtils.cpp" />
+    <ClCompile Include="src\Ray.cpp" />
+    <ClCompile Include="src\RayColorUtil.cpp" />
+    <ClCompile Include="src\SceneUtil.cpp" />
+    <ClCompile Include="src\Skybox.cpp" />
+    <ClCompile Include="src\SolidColor.cpp" />
+    <ClCompile Include="src\Sphere.cpp" />
+    <ClCompile Include="src\Vec3.cpp" />
+    <ClCompile Include="src\Vec3Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="extern\EasyBMP\EasyBMP.h" />
     <ClInclude Include="extern\EasyBMP\EasyBMP_BMP.h" />
     <ClInclude Include="extern\EasyBMP\EasyBMP_DataStructures.h" />

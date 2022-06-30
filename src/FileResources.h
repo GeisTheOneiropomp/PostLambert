@@ -4,4 +4,4 @@ using namespace std;
 
 const static string MOON_FILE = "extern\\img\\moon.jpg";
 const static string SKYBOX_FILE = "extern\\img\\nightsky.jpg";
-const static string OUTPUT = "postlambert_output.ppm";
+const static string OUTPUT = "postlambert_output.bmp";
