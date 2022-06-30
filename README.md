@@ -1,7 +1,7 @@
 PostLambert: A ray tracer extending the Lambertian model of Diffuse Reflection
 ====================================================================================================
 
-This project implements several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
+This project implements a ray tracer that simulates several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
 
 | ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
 |:----------------------------:|:---------------------------:|
@@ -16,10 +16,11 @@ This program implements models derived from planetary astronomy that have been f
 ## Usage
 
 1. Clone this repository.
+<<<<<<< HEAD
 
-2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors.)
+2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors. If you encounter compilations, ensure that the file is encoded in UTF-8 and retry.)
 
-3. Run from the command line. Note that the output will be a .ppm file. So for example, running 
+3. The project comes with two images, they can be swapped out with one's own background images, or moon textures by changing filenames in the FileResources.h file:
 
 ```bash
 ./postlambert.exe > "test.ppm"
@@ -80,25 +81,33 @@ shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);
 
 Note that, the number of arguments into the constructor may change. Consult the PDF for explanations on how to tweak the accompanying values.
 
+5. Run from either the command line or by just running with Visual Studio. There are no command line arguments to pass in.
+
+The default output location is "postlambert.bmp". It can be changed here:
+`FileResources.h`:
+```c++
+const static string OUTPUT = "postlambert.bmp";
+```
+
 ## Image Gallery
 
 The following section compares post-Lambertian models of the Moon with the standard Lambertian model:
 
+| ![Base Moon][basemoon]       | ![Lommel][lommelmoon]       | 
+|:----------------------------:|:---------------------------:|
+|          Base Moon           |         Lommel-Seeliger model. It assumes that scattering is isotropic.      | 
+
 | ![Base Moon][basemoon]       | ![Minnaert][minnaertmoon]   | 
 |:----------------------------:|:---------------------------:|
-|          Base Moon           |           Minnaert          | 
+|          Base Moon           |           Minnaert model. It takes a single parameter n in a generalization of Lambert's Law. By setting n = 1, it reduces to Lambertian scattering.          | 
 
 | ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
 |:----------------------------:|:---------------------------:|
-|          Base Moon           |       Lunar Lambert         | 
+|          Base Moon           |       Lunar Lambert model. It takes two parameters A and B, which alters the strength of the overall affect.         | 
 
-| ![Base Moon][basemoon]       | ![Lommel][lommelmoon]       | 
+| ![Base Moon][basemoon]       | ![Minnaert][hapkemoon]   | 
 |:----------------------------:|:---------------------------:|
-|          Base Moon           |         Lommel-Seeliger     | 
-
-| ![Base Moon][basemoon]       | ![Minnaert][minnaertmoon]   | 
-|:----------------------------:|:---------------------------:|
-|          Base Moon           |             Hapke           | 
+|          Base Moon           |             Hapke model. It takes a single parameter theta, which models the roughness of the surface. | 
 
 Using a post-Lambertian material can give a flat-looking diffuse surface depth:
 
@@ -113,14 +122,14 @@ It should be noted that even though post-Lambertian scattering models are often 
 |          Base Moon           |  Hapke, but the balls appear radioactive      | 
 
 ## In what situations are post-Lambert materials usable?
-    
-  * Astronomical bodies. Given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, this is probably the most applicable situation.
-  
+      
   * Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
   
   * Situations in which diffuse light scattering is not uniform (heterogenous materials, or situations in which thick atmospheres surround the diffuse body).
   
   * Situations in which a "glow-effect" is desired, or other desirable effects that may not be rooted in reality.
+
+  * It is worth noting that given that these models were derived by astronomers for the purposes of making their mathematical formulae more accurate, from a physically-based rendering point of view, astronomical bodies are probably the most applicable situation.
 
 Try and see for yourself if these Post-Lambert materials are suitable for your project!
 
@@ -142,3 +151,7 @@ Try and see for yourself if these Post-Lambert materials are suitable for your p
 [basescene]:          OutputGallery/scene.png
 [minnaertscene]:          OutputGallery/minnaertscene.png
 [hapkescene]:          OutputGallery/HapkeScene.png
+
+## Dislcaimers:
+
+No copyright infringement is intended. A full list of sources is provided in the accompanying PDF. 
