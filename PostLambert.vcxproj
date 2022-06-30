@@ -206,6 +206,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="extern\EasyBMP\EasyBMP.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\ColorUtil.cpp" />
     <ClCompile Include="src\Dielectric.cpp" />
@@ -233,6 +234,10 @@
     <ClCompile Include="src\Vec3Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="extern\EasyBMP\EasyBMP.h" />
+    <ClInclude Include="extern\EasyBMP\EasyBMP_BMP.h" />
+    <ClInclude Include="extern\EasyBMP\EasyBMP_DataStructures.h" />
+    <ClInclude Include="extern\EasyBMP\EasyBMP_VariousBMPutilities.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\ColorUtil.h" />
     <ClInclude Include="src\Config.h" />

@@ -24,6 +24,7 @@
 #include "Minnaert.h"
 #include "LommelSeeliger.h"
 #include "Config.h"
+#include "../extern/EasyBMP/EasyBMP.h"
 
 using namespace rt_math;
 
@@ -53,7 +54,7 @@ int main() {
     default:
     case SCENEPATH::MOON :
         auto moonTexture = make_shared<ImageTexture>(MOON_FILE);
-        shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, .5);
+        shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, .3);
         world = MoonScene(moonMaterial);
         lookfrom = Point3(7, 0, 0);
         lookat = Point3(0, 0, 0);
@@ -62,25 +63,22 @@ int main() {
     }
 
     Camera cam(lookfrom, lookat, vup, fieldOfView, AspectRatio, aperture, distToFocus);
-    // Render
 
-    std::ofstream outfile;
-    outfile.open(OUTPUT);
-
-    outfile << "P3\n" << ImageWidth << ' ' << ImageHeight << "\n255\n";
-
-    for (int j = ImageHeight - 1; j >= 0; --j) {
-        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
-        for (int i = 0; i < ImageWidth; ++i) {
+    BMP outputImage;
+    outputImage.SetSize(OutputImageWidth, OutputImageHeight);
+    for (int j = OutputImageHeight - 1; j >= 0; --j) {
+        std::cerr <<  "\rRaytracing the PostLambert image...Scanlines remaining: " << j << ' ' << std::flush  ;
+        for (int i = 0; i < OutputImageWidth; ++i) {
             Color normal_pixel_color(0, 0, 0);
             for (int s = 0; s < SamplesPerPixel; ++s) {
-                auto u = (i + RandomDouble()) /  (double (ImageWidth - 1.0));
-                auto v = (j + RandomDouble()) /  (double (ImageHeight - 1.0));
+                auto u = (i + RandomDouble()) /  (double (OutputImageWidth - 1.0));
+                auto v = (j + RandomDouble()) /  (double (OutputImageHeight - 1.0));
                     Ray r = cam.getRay(u, v);
                     normal_pixel_color +=  RayColorWithBackground(r, skybox, world, MaxDepth);               
             }
-            ColorUtil::WriteColor(outfile, normal_pixel_color, SamplesPerPixel);
+            ColorUtil::WriteColor(normal_pixel_color, SamplesPerPixel, &outputImage, i, OutputImageHeight - j - 1);
         }
     }
+    outputImage.WriteToFile(OUTPUT.c_str());
     std::cerr << "\nDone.\n";
 }

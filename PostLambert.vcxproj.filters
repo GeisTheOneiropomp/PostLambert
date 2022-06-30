@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Rays">
       <UniqueIdentifier>{ff7513be-a3b7-4938-8f06-859c766888d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EasyBMP">
+      <UniqueIdentifier>{74f565f1-5d76-40ad-899d-30ae59eaa444}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="src\Ray.cpp">
       <Filter>Source Files\Rays</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\EasyBMP\EasyBMP.cpp">
+      <Filter>EasyBMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +223,18 @@
     </ClInclude>
     <ClInclude Include="src\Config.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_BMP.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_DataStructures.h">
+      <Filter>EasyBMP</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\EasyBMP\EasyBMP_VariousBMPutilities.h">
+      <Filter>EasyBMP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

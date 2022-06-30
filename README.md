@@ -9,14 +9,16 @@ This project implements a ray tracer that simulates several diffuse scattering m
 
 ## Digest
 
-Often commonly used in computer graphics, the Lambertian model is an idealization of diffuse scattering. However, the real world almost always features objects in which diffuse scattering is much more complex than thatwhich can be approximated with the Lambertian model. Phenomena such as subsurface scattering, coherent backscattering, retroreflection, are not accounted for; there exist more suitable models that can handle diffuse reflection more accurately.
+Often commonly used in computer graphics, the Lambertian model is an idealization of diffuse scattering. However, the real world almost always features objects in which diffuse scattering is much more complex than thatwhich can be approximated with the Lambertian model. Phenomena such as subsurface scattering, coherent backscattering, retroreflection, are not accounted for; there exist more suitable models that can handle diffuse reflection more accurately. This program implements models derived from planetary astronomy that have been found to be more accurate in some circumstances. It is perhaps of interest for those seeking to make more visually-realistic materials in the realm of computer graphics.
 
-This program implements models derived from planetary astronomy that have been found to be more accurate in some circumstances. It is perhaps of interest for those seeking to make more visually-realistic materials in the realm of computer graphics.
+For the time being, the parameters of the actual image (such as the dimensions of the output), can be changed in the main.cpp file. To view the other reflection models, simply swap out the line 
+	"shared_ptr<Material> moonMaterial = make_shared<LommelSeeliger>(moonTexture);"
+	with the desired line. Such as:
+	" shared_ptr<Material> moonMaterial = make_shared<Hapke>(moonTexture, 1);"
 
 ## Usage
 
 1. Clone this repository.
-<<<<<<< HEAD
 
 2. Compile to Release with Visual Studio. (Note well, this code project uses some Japanese characters. That may cause some compilation errors. If you encounter compilations, ensure that the file is encoded in UTF-8 and retry.)
 
@@ -121,6 +123,12 @@ It should be noted that even though post-Lambertian scattering models are often 
 |:----------------------------:|:---------------------------:|
 |          Base Moon           |  Hapke, but the balls appear radioactive      | 
 
+PostLambertian models can be used to create a variety of looks. Though not rooted in reality, here are some examples:
+
+| ![Planet 1][planet1]         | ![Planet 3][planet3]        | 
+|:----------------------------:|:---------------------------:|
+| ![Planet 2][planet2]         | ![Planet 4][planet4]        | 
+
 ## In what situations are post-Lambert materials usable?
       
   * Materials with a large amount of dust, dirt, or other small particulates covering the surface. Comets, asteroids and the Moon all have thick layers of dust covering their surfaces. These models capture this behavior.
@@ -152,6 +160,13 @@ Try and see for yourself if these Post-Lambert materials are suitable for your p
 [minnaertscene]:          OutputGallery/minnaertscene.png
 [hapkescene]:          OutputGallery/HapkeScene.png
 
-## Dislcaimers:
+[planet1]:          OutputGallery/postlambert_output.bmp
+[planet2]:          OutputGallery/postlambert_output2.bmp
+[planet3]:          OutputGallery/postlambert_output3.bmp
+[planet4]:          OutputGallery/daymoon.png
+
+## Disclaimers:
 
 No copyright infringement is intended. A full list of sources is provided in the accompanying PDF. 
+Original code was based on "Ray Tracing Weekend" series.
+Makes use of the EasyBMP library to output BMPs.
