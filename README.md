@@ -3,9 +3,9 @@ PostLambert: A ray tracer extending the Lambertian model of Diffuse Reflection
 
 This project implements a ray tracer that simulates several diffuse scattering models that are more complex than the Lambertian scattering model. For notes and the mathematical background that explains these models, see the accompanying PDF, tentatively titled "PostLambertianDraft.pdf."
 
-| ![Base Moon][basemoon]       | ![lunar][lunarlambertmoon]  | 
+| ![Base Moon][planet1]       | ![lunar][hapkepure]  | 
 |:----------------------------:|:---------------------------:|
-|          Standard Lambertian Diffuse Reflection           |      The Lunar-Lambert model of Diffuse Reflection, which accurately captures the glow of the Moon due to the presence of multiple scattering centers in the material that comprises the Moon.         | 
+|          The Minnaert model used on a gas giant           |      The Hapke model of Diffuse Reflection, which accurately captures the glow of the Moon due to the presence of multiple scattering centers in the material that comprises the Moon.         | 
 
 ## Digest
 
@@ -146,10 +146,12 @@ Try and see for yourself if these Post-Lambert materials are suitable for your p
   * In the case of Hapke's Law, surface roughness is taken into account, and a particle phase function is implemented, allowing for non-uniform scattering.
 
 [basemoon]:          OutputGallery/base.png
-[minnaertmoon]:          OutputGallery/minnaert.png
-[lunarlambertmoon]:          OutputGallery/lunarlambert.png
-[lommelmoon]:          OutputGallery/lommelseeliger.png
-[hapkemoon]:          OutputGallery/hapke.png
+[minnaertmoon]:          OutputGallery/minnaertcaption.png
+[lunarlambertmoon]:          OutputGallery/lunarlambertcaption.png
+[lommelmoon]:          OutputGallery/lommelseeligercaption.png
+[hapkemoon]:          OutputGallery/hapkecaption.png
+
+[hapkepure]:          OutputGallery/hapke.png
 
 [basescene]:          OutputGallery/scene.png
 [minnaertscene]:          OutputGallery/minnaertscene.png
